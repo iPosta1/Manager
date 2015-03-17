@@ -83,7 +83,6 @@ public class DraftController {
     // league's players
     Map<String, Map<Integer, Lplayers>> leagueplayers = new HashMap<String, Map<Integer, Lplayers>>();
 
-    List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
 
     // private static final Object monitor = new Object();
 
