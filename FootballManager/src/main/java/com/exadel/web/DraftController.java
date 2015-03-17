@@ -82,7 +82,8 @@ public class DraftController {
     Map<String, Integer> leaguepickscount = new HashMap<String, Integer>();
     // league's players
     Map<String, Map<Integer, Lplayers>> leagueplayers = new HashMap<String, Map<Integer, Lplayers>>();
-
+    // league timer
+    Map<String, Integer> leaguetimer = new HashMap<String, Integer>();
 
     // private static final Object monitor = new Object();
 
@@ -111,15 +112,15 @@ public class DraftController {
 
     /*----------starting draft---------------*/
     /**
-     * Method start draft. First it loads all free players, then teams queue and
-     * then all picks
+     * Method starts draft. First it loads all free players, then teams queue,
+     * then all picks and then starts picking.
      * 
      * @param leaguename
      * @return 1 or 0
      */
     @RequestMapping(value = "{leaguename}/startdraft", method = RequestMethod.POST)
     public @ResponseBody
-    String startDraft(@PathVariable("leaguename") String leaguename) {
+    String startDraft(@PathVariable("leaguename") final String leaguename) {
         System.err.println("Starting draft...");
         try {
             // load league
@@ -144,7 +145,35 @@ public class DraftController {
             leaguepicks.put(leaguename, draftpicks);
             leaguepickscount.put(leaguename, draftpicks.size());
 
+            leaguetimer.put(leaguename, 30);
+
+            // set offline default
+            for (int i = 0; i < draftqueue.size(); i++) {
+                draftqueue.get(i).setIsOnline(0);
+                draftqueueService.updateQueue(draftqueue.get(i));
+            }
+
             System.err.println("Draft started");
+            // run time
+            new Thread(new Runnable() {
+                public void run() {
+                    try {
+                        for (int i = 120; i > -1; i--) {
+                            // 100+ means that draft not started
+                            int tm = 100 + i;
+                            leaguetimer.put(leaguename, tm);
+
+                            Thread.sleep(1000);
+
+                        }
+                        nextPick(leaguename);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }).start();
+
             return "1";
         } catch (IndexOutOfBoundsException e2) {
             LOG.log(Level.SEVERE, "Exception: ", e2);
@@ -182,10 +211,10 @@ public class DraftController {
     public @ResponseBody
     String enterDraft(@PathVariable("leaguename") String leaguename, HttpServletRequest request) {
         try {
-            List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
-            draftqueue = leaguequeue.get(leaguename);
-
             if (request.getUserPrincipal() != null) {
+                List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
+                draftqueue = leaguequeue.get(leaguename);
+
                 for (int i = 0; i < draftqueue.size(); i++) {
                     if (draftqueue.get(i).getDraftqueueID().getTeam().getUuser().getUsername()
                             .equals(request.getUserPrincipal().getName())) {
@@ -216,10 +245,10 @@ public class DraftController {
     public @ResponseBody
     String leaveDraft(@PathVariable("leaguename") String leaguename, HttpServletRequest request) {
         try {
-            List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
-            draftqueue = leaguequeue.get(leaguename);
-
             if (request.getUserPrincipal() != null) {
+                List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
+                draftqueue = leaguequeue.get(leaguename);
+
                 for (int i = 0; i < draftqueue.size(); i++) {
                     if (draftqueue.get(i).getDraftqueueID().getTeam().getUuser().getUsername()
                             .equals(request.getUserPrincipal().getName())) {
@@ -310,6 +339,14 @@ public class DraftController {
         return lpID;
     }
 
+    @RequestMapping(value = "{leaguename}/timer", method = RequestMethod.POST)
+    public @ResponseBody
+    int getTimer(@PathVariable("leaguename") String leaguename) {
+        int timeleft = leaguetimer.get(leaguename);
+        // get last
+        return timeleft;
+    }
+
     /*------------------------Getting data via Ajax end-------------------------------*/
 
     /**
@@ -325,7 +362,7 @@ public class DraftController {
 
         List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
         draftqueue = leaguequeue.get(leaguename);
-
+        leaguetimer.put(leaguename, 30);
         if (draftqueue.size() != 0) {
             // get size of picks
             // int size = getDraftPicks(leaguename).size();
@@ -333,16 +370,19 @@ public class DraftController {
 
             // if player offline
             if (draftqueue.get(0).getIsOnline() != 1) {
-                Thread.sleep(3000);// qait 1 sec
+                leaguetimer.put(leaguename, -1);
+
+                Thread.sleep(2000);// qait 1 sec
                 // autopick
                 playerToPick(leaguename, draftqueue.get(0).getDraftqueueID().getTeam().getUuser()
                         .getUsername());
+
             } else {
                 // 30 sec for pick
-                for (int i = 0; i < 30; i++) {
-                    System.err.println("seconds= " + i);
+                for (int i = 30; i > -1; i--) {
 
                     Thread.sleep(1000);
+                    leaguetimer.put(leaguename, i);
                     // get size of picks
                     int newsize = leaguepickscount.get(leaguename);
 
@@ -350,7 +390,7 @@ public class DraftController {
                     if (newsize > size)
                         break;
                     // auto pick on last second
-                    if (i == 29)
+                    if (i == 0)
                         playerToPick(leaguename, draftqueue.get(0).getDraftqueueID().getTeam()
                                 .getUuser().getUsername());
                 }
@@ -367,18 +407,6 @@ public class DraftController {
     @RequestMapping("{leaguename}")
     public String toDraft(@PathVariable("leaguename") String leaguename) {
         return "draft";
-    }
-
-    /**
-     * @param leaguename
-     * @param roster
-     * @return user's roster
-     */
-    @RequestMapping(value = "{leaguename}/roster", method = RequestMethod.GET, headers = "Accept=application/json")
-    public @ResponseBody
-    List<Roster> getRoster(@PathVariable("leaguename") String leaguename,
-            @ModelAttribute("userRoster") ArrayList<Roster> roster) {
-        return roster;
     }
 
     /**
@@ -455,63 +483,67 @@ public class DraftController {
             @RequestParam("username") String username, @PathVariable("leaguename") String leaguename)
             throws InterruptedException {
         try {
-
-            Leagues league = leaguesService.getLeaguebyName(leaguename);
-            Users user = usersService.getUserByName(username);
-            Teams team = new Teams();
-            team = teamsService.getTeamBy(user, league);
-
-            Lplayers player = new Lplayers();
-            player = lplayersService.getLplayer(lplayerID);
-
-            Roster roster = new Roster();
-            RosterID rosterID = new RosterID();
-            rosterID.setLplayer(player);
-            rosterID.setTeam(team);
-            roster.setRosterID(rosterID);
-            rosterService.saveRoster(roster);
-
-            player.setPteam(team);
-            lplayersService.updatePlayer(player);
-
-            // reload lplayers list
-            // !!!!!!!!!!!!!!DELETE PLAYER
-            Map<Integer, Lplayers> players = new LinkedHashMap<Integer, Lplayers>();
-            players = leagueplayers.get(leaguename);
-            players.remove(lplayerID);
-
             List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
             draftqueue = leaguequeue.get(leaguename);
 
-            /* from draftqueue to draft picks */
-            Draftpicks draftpick = new Draftpicks();
-            draftpick.setDraftqueueID(draftqueue.get(0).getDraftqueueID());
-            draftpick.setLpplayer(player);
-            draftpicksService.saveDraftpick(draftpick);
+            if (draftqueue.get(0).getDraftqueueID().getTeam().getUuser().getUsername()
+                    .equals(username)) {
 
-            // add to leaguepicks
-            List<Draftpicks> draftpicks = new ArrayList<Draftpicks>();
-            draftpicks = leaguepicks.get(leaguename);
-            draftpicks.add(draftpick);
-            leaguepicks.put(leaguename, draftpicks);
+                Leagues league = leaguesService.getLeaguebyName(leaguename);
+                Users user = usersService.getUserByName(username);
+                Teams team = new Teams();
+                team = teamsService.getTeamBy(user, league);
 
-            // remove from DB
-            draftqueueService.deleteQueue(draftqueue.get(0));
-            // remove from leaguequeue
-            draftqueue.remove(0);
-            // update leaguequeue attribute
-            leaguequeue.put(leaguename, draftqueue);
+                Lplayers player = new Lplayers();
+                player = lplayersService.getLplayer(lplayerID);
 
-            Integer picks = leaguepickscount.get(leaguename);
-            picks++;
-            leaguepickscount.put(leaguename, picks);
+                Roster roster = new Roster();
+                RosterID rosterID = new RosterID();
+                rosterID.setLplayer(player);
+                rosterID.setTeam(team);
+                roster.setRosterID(rosterID);
+                rosterService.saveRoster(roster);
 
-            /*------------------------------*/
+                player.setPteam(team);
+                lplayersService.updatePlayer(player);
 
-            LOG.log(Level.INFO, "Player " + player.getPplayer().getLastname() + " drafted by team "
-                    + team.getName() + " ");
+                // reload lplayers list
+                // !!!!!!!!!!!!!!DELETE PLAYER
+                Map<Integer, Lplayers> players = new LinkedHashMap<Integer, Lplayers>();
+                players = leagueplayers.get(leaguename);
+                players.remove(lplayerID);
 
-            nextPick(leaguename); // to next pick
+                /* from draftqueue to draft picks */
+                Draftpicks draftpick = new Draftpicks();
+                draftpick.setDraftqueueID(draftqueue.get(0).getDraftqueueID());
+                draftpick.setLpplayer(player);
+                draftpicksService.saveDraftpick(draftpick);
+
+                // add to leaguepicks
+                List<Draftpicks> draftpicks = new ArrayList<Draftpicks>();
+                draftpicks = leaguepicks.get(leaguename);
+                draftpicks.add(draftpick);
+                leaguepicks.put(leaguename, draftpicks);
+
+                // remove from DB
+                draftqueueService.deleteQueue(draftqueue.get(0));
+                // remove from leaguequeue
+                draftqueue.remove(0);
+                // update leaguequeue attribute
+                leaguequeue.put(leaguename, draftqueue);
+
+                Integer picks = leaguepickscount.get(leaguename);
+                picks++;
+                leaguepickscount.put(leaguename, picks);
+
+                /*------------------------------*/
+
+                LOG.log(Level.INFO, "Player " + player.getPplayer().getLastname()
+                        + " drafted by team " + team.getName() + " ");
+
+                nextPick(leaguename); // to next pick
+
+            }
 
             return "1";
         } catch (IndexOutOfBoundsException e2) {

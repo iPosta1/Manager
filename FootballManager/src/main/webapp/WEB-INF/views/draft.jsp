@@ -38,6 +38,7 @@
         	 setInterval(function() {
         	        
                   checkUpdateState(leaguename);
+                  updateTimer(leaguename);
                   }, 1000);
         	 
         	// $("#draft_p_table tr").click(function(){
@@ -101,8 +102,7 @@
                                 <label id="p_birthdate"> </label>
                                 <label id="p_position"> </label>
                                 <input type="button" onclick="draftPlayer('${pageContext.request.userPrincipal.name}','${leaguename}')" value="Draft Player"/>
-                                <input type="button" onclick="test('${leaguename}')" value="check"/>
-                                <input type="button" onclick="godraft('${leaguename}')" value="start"/>
+
                                 </td> 
                             </tr>
                        </table>
