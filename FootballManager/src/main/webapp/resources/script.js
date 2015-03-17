@@ -353,10 +353,7 @@ function draftPlayer(username, leaguename) {
 		success : function(data) {
 			if (data != "0") {
 				//getPlayers(leaguename);
-				getRoster(leaguename);
-				getQueue(leaguename);
-				getPicks(leaguename);
-
+				getRosterTeam(leaguename,principalName);
 				/* draft picks */
 
 			} else {
@@ -394,27 +391,6 @@ function getPlayers(leaguename) {
 
 var principalName; // principal's name
 
-function getRoster(leaguename) {
-	var username = principalName;
-	$.ajax({
-		type : 'get',
-		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
-				+ '/roster',
-		dataType : "json",
-		contentType : "application/json",
-		cache : false,
-		data : {
-			'username' : username
-		},
-		success : function(data) {
-			drawRoster(data);
-
-		},
-		error : function(XmlHttpRequest, textStatus, errorThrown) {
-
-		}
-	});
-}
 
 function getRosterTeam(leaguename,user) {
 	$.ajax({
@@ -615,18 +591,18 @@ function drawRowQueue(rowData, num,league) {
 			row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
 					+" pick "+rowData.draftqueueID.pick
 					+ "<div id='drafttpanel_your'>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
-					+ "</div></div><div id='drtime'>1:00</div></div></td>"));
+					+ "</div></div><div id='drtime'></div></div></td>"));
 		} else {
 			if (rowData.isOnline ==1) {
 				row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
 						+" pick "+rowData.draftqueueID.pick
 						+ "<div id='drafttpanel_online'>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
-						+ "</div></div><div id='drtime'>1:00</div></div></td>"));
+						+ "</div></div><div id='drtime'></div></div></td>"));
 			}else {
 				row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
 						+" pick "+rowData.draftqueueID.pick
 						+ "<div id='drafttpanel_online'>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
-						+ "</div></div><div id='drtime'>1:00</div></div></td>"));
+						+ "</div></div><div id='drtime'></div></div></td>"));
 			}
 		}
 	} else {
@@ -919,7 +895,7 @@ function loadTables(leaguename) {
 			getPlayers(leaguename);
 			getQueue(leaguename);
 			getPicks(leaguename);
-			getRoster(leaguename);
+			getRosterTeam(leaguename,principalName);
 
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
@@ -928,7 +904,20 @@ function loadTables(leaguename) {
 	});
 }
 
+function startDraft(leaguename) {
+	$.ajax({
+		type : 'post',
+		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
+				+ '/startdraft',
+		cache : false,
+		success : function(data) {
+          console.log(data);
+		}
+	});
+}
+
 function openDraft(leaguename) {
+
 	var params = [ 'height=' + screen.height, 'width=' + screen.width,
 			'fullscreen=yes', // only works in IE, but here for completeness
 			'Toolbar=0', 'location=no', 'Directories=0', 'Status=0',
@@ -953,12 +942,14 @@ function checkUpdateState(leaguename) {
 		dataType : "text",
 		cache : false,
 		success : function(data) {
+			if (size == null){
+				size = data;
+			}
 			if (data != size) {
-				
-
+			
 				getQueue(leaguename);
 				removePlayer(leaguename);
-				getPicks(leaguename);
+				getLastPick(leaguename);
 				size = data;
 			}
 		},
@@ -966,6 +957,30 @@ function checkUpdateState(leaguename) {
 
 			// alert("=error= " + XmlHttpRequest.responseText);
 
+		}
+	});
+}
+
+
+function updateTimer(leaguename) {
+
+	$.ajax({
+		type : 'post',
+		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
+				+ '/timer',
+		dataType : "text",
+		cache : false,
+		success : function(data) {
+			if (data == -1) {
+				document.getElementById('drtime').innerHTML = "autopick";
+			} else if (data>99) {
+				var sec = data-100;
+				document.getElementById('drtime').innerHTML = "Draft starting in "+sec +" seconds";
+			} else if (data<10) {
+				document.getElementById('drtime').innerHTML = "0:0"+data;
+			} else {
+				document.getElementById('drtime').innerHTML = "0:"+data;
+			}
 		}
 	});
 }
@@ -995,62 +1010,6 @@ $("tr#"+id+"").remove();
 }
 
 
-/* AUTO PICK */
-function autoPick(username,leaguename) {
-	
-	$.ajax({
-		type : 'post',
-		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
-				+ '/autopick',
-		dataType : "text",
-		data : {
-			'username' : username
-		},
-		cache : false,
-		success : function(data) {
-          console.log(data);
-		},
-		error : function(XmlHttpRequest, textStatus, errorThrown) {
-			// alert(XmlHttpRequest.responseText);
-			// alert("error= " + errorThrown);
 
-		}
-	});
-}
-
-function godraft(leaguename) {
-	
-	$.ajax({
-		type : 'post',
-		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
-				+ '/nextpick',
-		cache : false,
-		success : function(data) {
-          console.log(data);
-		},
-		error : function(XmlHttpRequest, textStatus, errorThrown) {
-			// alert(XmlHttpRequest.responseText);
-			// alert("error= " + errorThrown);
-
-		}
-	});
-}
-
-function startDraft(leaguename) {
-	$.ajax({
-		type : 'post',
-		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
-				+ '/startdraft',
-		cache : false,
-		success : function(data) {
-          console.log(data);
-		},
-		error : function(XmlHttpRequest, textStatus, errorThrown) {
-			// alert(XmlHttpRequest.responseText);
-			// alert("error= " + errorThrown);
-
-		}
-	});
-}
 
 
