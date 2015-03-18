@@ -189,19 +189,7 @@ DECLARE cnt INT;
   END IF;
 end$$
  
-  DELIMITER $$
-CREATE TRIGGER draft_player before INSERT ON footballmanager.roster
-    FOR EACH ROW 
-begin
-DECLARE cnt INT;
-DECLARE leagID INT;
- 
-    SELECT teams.leagueID into leagID from teams where teams.teamID = new.teamID; 
-    SELECT count(*) into cnt from roster inner join teams on roster.teamID = teams.teamID inner join leagues on teams.leagueID = leagues.leagueID where (roster.lplayerID = new.lplayerID) and (leagues.leagueID = leagID);
-       if (cnt) > 0 then
-  SIGNAL sqlstate '45001' set message_text = "player exists";
-  END IF;
-end$$
+
  
  
 commit;
