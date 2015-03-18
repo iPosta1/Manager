@@ -157,14 +157,14 @@ public class LeagueOperations {
 
                 /*---- generate draft queue ------*/
                 // 10 rounds
-                for (int round = 1; round < 11; round++) {
-                    for (int pick = 1; pick < standings.size(); pick++) {
+                for (int round = 1; round < 21; round++) {
+                    for (int pick = 0; pick < standings.size(); pick++) {
                         Draftqueue drq = new Draftqueue();
                         DraftqueueID drqID = new DraftqueueID();
                         drqID.setRound(round);
                         //
-                        drqID.setPick(32 * (round - 1) + pick);
-                        drqID.setTeam(standings.get(pick - 1).getSID().getTeam());
+                        drqID.setPick(32 * (round - 1) + pick+1);
+                        drqID.setTeam(standings.get(pick).getSID().getTeam());
 
                         drq.setDraftqueueID(drqID);
                         dservice.saveQueue(drq);

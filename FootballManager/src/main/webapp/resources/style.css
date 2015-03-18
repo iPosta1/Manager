@@ -1658,9 +1658,11 @@ text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) ;
 font-weight:bold;
 text-align:right;
 padding-top:10px;
-font-size:20px;
- color:Black;
+font-size:16px;
+ color:white;
 }
+
+
 
 #drafttdata_online{
 
@@ -1693,12 +1695,14 @@ height:100%;
 width:100%;
 }
 
-
+#yourNext{
+background:rgba(255,255,255,0.3); 
+}
 
 #your_next_pick{
 text-align:center;
 height:100px;    
- background:url(images/leftPan.png) repeat;
+ background:url(images/blackstripes.png) repeat;
  width:20%;
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 font-weight:bold;
@@ -1715,6 +1719,7 @@ box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 
 }
 
+
 #yourNextTitle{
 font-weight:bold;
 padding-left:5%;
@@ -1725,7 +1730,7 @@ text-shadow: 1px 1px 0 rgba(140,140,140,0.6);
 }
 #npblock{   
  height:40px;
-
+color:white;
 -webkit-box-shadow: 0 0 3px grey;
 -moz-box-shadow: 0 0 3px grey;
 -ms-box-shadow: 0 0 3px grey;
@@ -1895,9 +1900,30 @@ box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.8);
 
     }
     
+#draftpblock{
+    bottom:0;
+    left:20%;
+    position: fixed;
+    height:40%;
+    width:80%;
+}
+#draftpickblock{
+    top:0;
+    left:20%;
+    position: fixed;
+    height:36%;
+    width:32%;
+}
+#draftplinfo{
+    top:36%;
+    left:20%;
+    position: fixed;
+    height:24%;
+    width:32%;
+}
+    
 /* DRAFT PLAYERS TABLE */
-table #draft_p_table{
-
+table .draft_p_table{
 
 overflow-y:scroll;
 vertical-align:top;
@@ -1905,17 +1931,13 @@ vertical-align:top;
  border-collapse: collapse;
  background:url(images/leftPan.png) repeat; 
 }
-table #draft_p_table td{
+table .draft_p_table td{
 
 text-align:center;
 font-size:14px;
 }
 
-
-
-
-
-table #draft_p_table thead tr{
+table .draft_p_table thead tr{
     top:0;
    borned:none; 
 
@@ -1932,13 +1954,8 @@ table #draft_p_table thead tr{
 -o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
 box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.8);
 }
-table #draft_p_table thead tr{
-    border:none;
 
-    }
-
-
-table #draft_p_table tr{
+table .draft_p_table tr{
     
     top:0;
  border-collapse: collapse; 
@@ -1951,13 +1968,13 @@ table #draft_p_table tr{
 
 }
 
-table #draft_p_table tbody {
+table .draft_p_table tbody {
       display: block;
       height: 100%;
       max-height:700px;
       width: 100%;
       overflow: hidden;
-      overflow-y: auto;
+      overflow-y: scroll;
       -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
 -moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
 -ms-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
@@ -1993,6 +2010,9 @@ box-shadow: 0px 0 3px rgba(0, 0, 0, 0.8);
 /* big table end */
 
 #draft_p_info{
+	border:none;
+	width:100%;
+	height:100%;
  background:url(images/blackstripes.png) repeat;    
 }
 
@@ -2011,34 +2031,36 @@ text-align:center;
 font-size:14px;
 }
 
-
+#rosterPlayers{
+background:rgba(255,255,255,0.3); 
+}
 
 
 
 table #draftRoster thead tr{
     top:0;
-   borned:none; 
-
     display: table;
     width: 100%;
     table-layout: fixed;
+ font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+    font-weight:bold;
+    color:white;
     
-
-    background:url(images/topPanel.png) repeat-x;
-
+    -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-ms-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-o-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+box-shadow: 0px 0 3px rgba(0, 0, 0, 0.8);
 
 }
-table #draftRoster thead tr{
-    border:none;
+table #draftRoster thead tr td{
+	text-align:left;
+	padding-left:7%;
+	 border-bottom: 2px solid white; 
+	 
+	 
+}
 
-vertical-align:top;
-color:red;
-  -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
--moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
--ms-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
--o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.8);
-    }
 
 
 table #draftRoster tr{
@@ -2061,120 +2083,28 @@ table #draftRoster tbody {
       
       vertical-align:top;
      color:white;
-
-}
-/* ---------------TABS--------------- */
-/* Базовый контейнер табов */
-.draftRosterTabs {
- 
-  width: 100%;
-  height:100%;
-   background:url(images/leftPan.png) repeat; 
-}
-/* стили секций с содержанием */
-.draftRosterTabs section {
-    width:100%;
-  display: none;
-  height:100%;
-  
-  -webkit-box-shadow: 0 0 16px rgba(0, 0, 0, 0.8);
--moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
--ms-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
--o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-box-shadow: 0px 4px 11px rgba(0, 0, 0, 0.8);
-  
-}
-.draftRosterTabs input {
-  display: none;
-} 
-/* стили вкладок (табов) */
-.draftRosterTabs label {
-    padding-top:10px;
-    width:150px;
-    height:18px;
-  display: inline-block;
-  margin: 0 0 -1px;
-
-  text-align: left;
-  font-size:18px;
-
-  color:white;
- font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-font-weight:bold;
-
-    text-shadow: 1px 1px 2px black, 0 0 1em black; /* Параметры тени */
-}
-
-.draftRosterTabs label:before {
-
-  font-weight: normal;
-  margin-right: 10px;
-}
-
-/* изменения стиля заголовков вкладок при наведении */
-.draftRosterTabs label:hover {
-  color: red;
-  cursor: pointer;
-}
-/* стили для активной вкладки */
-.draftRosterTabs input:checked + label {
-  color: red;
-
-}
-/* активация секций с помощью переключателя :checked */
-#dtab1:checked ~ #dcontent1,
-#dtab2:checked ~ #dcontent2,
-#dtab3:checked ~ #dcontent3 {
-  display: block;
-}
-
-
-/*--------*/
-table #draftPicks{
-
-
-overflow-y:scroll;
-vertical-align:top;
-width:100%;
-height:100%;
- background:url(images/leftPan.png) repeat; 
- 
- 
-}
-table #draftPicks td{
-
-text-align:center;
-font-size:14px;
-color:black;
-text-align:left;
-padding-left:10px;
-}
-
-
-
-
-table #draftPicks tr{
     
-    top:0;
- border-collapse: collapse; 
-
-    display: table;
-    width: 100%;
-    table-layout: fixed;
-
-}
-
-table #draftPicks tbody {
-      display: block;
-      height: 100%;
-      width: 100%;
-      overflow: hidden;
-      overflow-y: auto;
-      
-      vertical-align:top;
-     color:white;
+         -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-ms-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-o-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+box-shadow: 0px 0 3px rgba(0, 0, 0, 0.8);
 
 }
+
+#rosterName{
+ background:url(images/blackstripes.png) repeat; 
+ height:40px;
+ width:100%;
+ float:left;
+}
+
+
+
+
+
+
+
 
 
 
@@ -2267,8 +2197,6 @@ font-weight:bold;
  
   display: none;
 
-  
-  
 }
 .draftPlayersTabs input {
   display: none;
@@ -2277,27 +2205,20 @@ font-weight:bold;
 /* стили вкладок (табов) */
 .draftPlayersTabs label {
     
-    padding-top:10px;
-    width:150px;
-    height:18px;
+ padding-left:15px;
+  
   display: inline-block;
-  margin: 0 0 -1px;
 
   text-align: left;
-  font-size:18px;
+  font-size:15px;
 
   color:white;
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 font-weight:bold;
 
-    text-shadow: 1px 1px 2px black, 0 0 1em black; /* Параметры тени */
+  text-shadow: 1px 1px 2px black, 0 0 1em black; /* Параметры тени */
 }
 
-.draftPlayersTabs label:before {
-
-  font-weight: normal;
-  margin-right: 10px;
-}
 
 /* изменения стиля заголовков вкладок при наведении */
 .draftPlayersTabs label:hover {
@@ -2310,6 +2231,7 @@ font-weight:bold;
 
 }
 /* активация секций с помощью переключателя :checked */
+#dptab0:checked ~ #dpcontent0,
 #dptab1:checked ~ #dpcontent1,
 #dptab2:checked ~ #dpcontent2,
 #dptab3:checked ~ #dpcontent3,
@@ -2324,6 +2246,8 @@ font-weight:bold;
 #dptab12:checked ~ #dpcontent12,
 #dptab13:checked ~ #dpcontent13,
 #dptab14:checked ~ #dpcontent14,
-#dptab15:checked ~ #dpcontent15{
+#dptab15:checked ~ #dpcontent15,
+#dptab16:checked ~ #dpcontent16,
+#dptab17:checked ~ #dpcontent17{
   display: block;
 }

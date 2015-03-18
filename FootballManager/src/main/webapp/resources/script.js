@@ -405,7 +405,7 @@ function getRosterTeam(leaguename,user) {
 		},
 		success : function(data) {
 			drawRoster(data);
-
+           	      
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
 
@@ -491,6 +491,7 @@ function getAge(date) {
 function drawTable(data) {
 
 	$("#draft_p_table tbody tr").remove();
+	$("#draft_p_table_QB tbody tr").remove();
 	for (var i=0 in data) {
 		drawRow(data[i], i);
 	}
@@ -509,6 +510,23 @@ function drawRow(rowData, i) {
 	$(row).click(function() {
 		var selected = $(this).hasClass("highlight");
 		$("#draft_p_table tbody tr").removeClass("highlight");
+		$("#draft_p_table_QB tbody tr").removeClass("highlight");
+		$("#draft_p_table_RB tbody tr").removeClass("highlight");
+		$("#draft_p_table_WR tbody tr").removeClass("highlight");
+		$("#draft_p_table_DE tbody tr").removeClass("highlight");
+		$("#draft_p_table_CB tbody tr").removeClass("highlight");
+		$("#draft_p_table_DT tbody tr").removeClass("highlight");
+		$("#draft_p_table_OT tbody tr").removeClass("highlight");
+		$("#draft_p_table_TE tbody tr").removeClass("highlight");
+		$("#draft_p_table_P tbody tr").removeClass("highlight");
+		$("#draft_p_table_K tbody tr").removeClass("highlight");	
+		$("#draft_p_table_C tbody tr").removeClass("highlight");
+		$("#draft_p_table_OG tbody tr").removeClass("highlight");
+		$("#draft_p_table_FB tbody tr").removeClass("highlight");
+		$("#draft_p_table_FS tbody tr").removeClass("highlight");
+		$("#draft_p_table_SS tbody tr").removeClass("highlight");
+		$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+		$("#draft_p_table_OLB tbody tr").removeClass("highlight");
 		if (!selected)
 			$(this).addClass("highlight");
 	});
@@ -536,6 +554,897 @@ function drawRow(rowData, i) {
 	row.append($("<td width='5%'>" + rowData.pplayer.kickPower + "</td>"));
 	row.append($("<td width='5%'>" + rowData.pplayer.kickAccuracy + "</td>"));
 	row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>"));
+	
+	if (rowData.pplayer.defaultPosition == "QB"){
+
+		var rowQB = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(rowQB).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_QB tbody").append(rowQB);
+		rowQB.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		rowQB.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.throwPower + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.throwAccuracy + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "RB"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_RB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "DE"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_DE tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "WR"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_WR tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "CB"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_CB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "OT"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_OT tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "MLB"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_MLB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "OLB"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_OLB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "SS"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_SS tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "FS"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_FS tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "OG"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_OG tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "DT"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_DT tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "TE"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_TE tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "C"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_C tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "FB"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_FB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "K"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_K tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.kickPower + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.kickAccuracy + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.throwPower + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.throwAccuracy + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "P"){
+
+		var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+				+ JSON.stringify(rowData.pplayer.firstname) + ","
+				+ JSON.stringify(rowData.pplayer.lastname) + ","
+				+ JSON.stringify(rowData.pplayer.photo) + ","
+				+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+				+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_P tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+		row.append($("<td width='5%'>"
+				+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.kickPower + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.kickAccuracy + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.throwPower + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.throwAccuracy + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
 
 }
 /*----------------Draw table for players end---------------------------*/
@@ -546,25 +1455,26 @@ function drawTableQueue(data,leaguename) {
 	$("#draftTeams tr").remove();
 	
 
-	for (var i = data.length -1; i > -1 ; i--) {
+	for (var i = data.length-1; i > -1 ; i--) {
 
 		
 		if (data[i].draftqueueID.team.uuser.username == principalName) {
 			
-			var image;
-			image = "<img id='drafticon' src='data:image/png;base64,"+data[i].draftqueueID.team.teamlogo+" '/>";
-			
-			$("#yourNext tr").remove();
-			var username = data[i].draftqueueID.team.uuser.username;
-			var row1 = $("<tr><td><div id='yourNextTitle'>Your Team</div><div id='npblock'>"+image+"<div id='nexttdata'>" + data[i].draftqueueID.team.name
-					+ "</div></div></td></tr>").click(function() {getRosterTeam(leaguename,username);});;
-			$("#yourNext").append(row1);
-			
-			var row2 = $("<tr><td><div id='yourNextTitle'>Next pick: Round "+data[i].draftqueueID.round+" Pick "+data[i].draftqueueID.pick+"</div><td></tr>");
-			$("#yourNext").append(row2);
+				var image;
+				image = "<img id='drafticon' src='data:image/png;base64,"+data[i].draftqueueID.team.teamlogo+" '/>";
+				
+				$("#yourNext tr").remove();
+				var username = data[i].draftqueueID.team.uuser.username;
+				var row1 = $("<tr><td><div id='yourNextTitle'>Your Team</div><div id='npblock'>"+image+"<div id='nexttdata'>" + data[i].draftqueueID.team.name
+						+ "</div></div></td></tr>").click(function() {
+							document.getElementById('rosterName').innerHTML = document.getElementById('npblock').innerHTML;
+							getRosterTeam(leaguename,username);});;
+				$("#yourNext").append(row1);
+				
+				var row2 = $("<tr><td><div id='yourNextTitle'>Next pick: Round "+data[i].draftqueueID.round+" Pick "+data[i].draftqueueID.pick+"</div><td></tr>");
+				$("#yourNext").append(row2);
 			
 
-			
 		}
 	
 		if (i < 20) drawRowQueue(data[i], i,leaguename);
@@ -575,7 +1485,12 @@ function drawTableQueue(data,leaguename) {
 function drawRowQueue(rowData, num,league) {
 	//console.log("<tr onclick='getRosterTeam("+league+","+rowData.draftqueueID.team.uuser.username+")' />");
 
-	var row = $("<tr/>").click(function() {getRosterTeam(league,rowData.draftqueueID.team.uuser.username);});
+	var row = $("<tr/>").click(function() {
+		document.getElementById('rosterName').innerHTML = "<div id='npblock'><img id='drafticon' src='data:image/png;base64,"+rowData.draftqueueID.team.teamlogo+" '/><div id='nexttdata'>" + rowData.draftqueueID.team.name+ "</div>";
+		
+		
+		getRosterTeam(league,rowData.draftqueueID.team.uuser.username);
+		});
 
   
 	$("#draftTeams").prepend(row);
@@ -642,7 +1557,8 @@ function drawRowQueue(rowData, num,league) {
 
 /*----------------Draw roster for user---------------------------*/
 function drawRoster(data) {
-
+	//document.getElementById('rosterName').innerHTML = data[0].draftqueueID.team.name + "<img id='drafticon' src='data:image/png;base64,"+data[0].draftqueueID.team.teamlogo+" '/>";
+	
 	$("#draftRosterQB tbody tr").remove();
 	$("#draftRosterWR tbody tr").remove();
 	$("#draftRosterRB tbody tr").remove();
@@ -653,7 +1569,8 @@ function drawRoster(data) {
 	$("#draftRosterOT tbody tr").remove();
 	$("#draftRosterDE tbody tr").remove();
 	$("#draftRosterDT tbody tr").remove();
-	$("#draftRosterLB tbody tr").remove();
+	$("#draftRosterMLB tbody tr").remove();
+	$("#draftRosterOLB tbody tr").remove();
 	$("#draftRosterCB tbody tr").remove();
 	$("#draftRosterFS tbody tr").remove();
 	$("#draftRosterSS tbody tr").remove();
@@ -667,7 +1584,7 @@ function drawRoster(data) {
 
 function drawRosterRows(rowData, num) {
 
-	var row = $("<tr/>");
+	var row = $("<tr id ='rosterPlayers'/>");
 
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "QB") {
 		$("#draftRosterQB").append(row);
@@ -762,14 +1679,14 @@ function drawRosterRows(rowData, num) {
 
 /*----------------Draw picks---------------------------*/
 function drawTablePicks(data) {
-	$("#draftPicks tr").remove();
+	$("#draftPicks tbody tr").remove();
 	for (var i = 0; i < data.length; i++) {
 		drawRowPicks(data[i], i + 1);
 	}
 }
 function drawRowPicks(rowData, num) {
 	var row = $("<tr/>");
-	$("#draftPicks").prepend(row);
+	$("#draftPicks tbody").prepend(row);
 	row.prepend($("<td> Round " + rowData.draftqueueID.round + " pick "
 			+ rowData.draftqueueID.pick + ": " + rowData.draftqueueID.team.name
 			+ " picks " + rowData.lpplayer.pplayer.lastname + "</td>"));
@@ -896,6 +1813,7 @@ function loadTables(leaguename) {
 			getQueue(leaguename);
 			getPicks(leaguename);
 			getRosterTeam(leaguename,principalName);
+			
 
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
@@ -993,7 +1911,7 @@ function removePlayer(leaguename){
 		dataType : "json",
 		cache : false,
 		success : function(data) {
-			console.log("player to delete with id="+data);
+
 				deletePlayer(data);
 
 		},
@@ -1005,7 +1923,6 @@ function removePlayer(leaguename){
 	});
 }
 function deletePlayer(id){
-	console.log("#draft_p_table tr#"+id+"");
 $("tr#"+id+"").remove();
 }
 

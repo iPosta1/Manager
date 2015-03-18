@@ -85,13 +85,13 @@
                     <tr>
                        <td width="40%">
                            <table cellspacing="0" cellpadding="0" width="100%" height="100%" align="center" id="draftInfo" >
-                            <tr height="60%">
+                            <tr height="50%">
                                 <td>
                                     <!-- ------PICKS------------- -->
                              <table cellspacing="0" cellpadding="0" width="100%" height="100%" class="draft_p_table" id="draftPicks" >
                                         <thead>
                                             <tr>
-                                                  <td><div id="dhead" > Draft history </div></td> 
+                                                  <td><div id="dhead" > player </div></td> 
                                             </tr>
                                         </thead>
                                         <tbody>
