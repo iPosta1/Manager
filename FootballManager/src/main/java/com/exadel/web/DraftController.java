@@ -145,7 +145,7 @@ public class DraftController {
             leaguepicks.put(leaguename, draftpicks);
             leaguepickscount.put(leaguename, draftpicks.size());
 
-            leaguetimer.put(leaguename, 30);
+            leaguetimer.put(leaguename, 59);
 
             // set offline default
             for (int i = 0; i < draftqueue.size(); i++) {
@@ -158,7 +158,7 @@ public class DraftController {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        for (int i = 1200; i > -1; i--) {
+                        for (int i = 120; i > -1; i--) {
                             // 100+ means that draft not started
                             int tm = 100 + i;
                             leaguetimer.put(leaguename, tm);
@@ -220,7 +220,8 @@ public class DraftController {
                             .equals(request.getUserPrincipal().getName())) {
                         draftqueue.get(i).setIsOnline(1);
                         draftqueueService.updateQueue(draftqueue.get(i));
-
+                        leaguequeue.put(leaguename, draftqueue);
+                        System.err.println("player "+request.getUserPrincipal().getName()+" entered draft");
                     }
                 }
             }
@@ -254,6 +255,8 @@ public class DraftController {
                             .equals(request.getUserPrincipal().getName())) {
                         draftqueue.get(i).setIsOnline(0);
                         draftqueueService.updateQueue(draftqueue.get(i));
+                        leaguequeue.put(leaguename, draftqueue);
+                        System.err.println("player "+request.getUserPrincipal().getName()+" left draft");
                     }
                 }
             }
@@ -293,7 +296,14 @@ public class DraftController {
     List<Draftqueue> getQueue(@PathVariable("leaguename") String leaguename) {
         List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
         draftqueue = leaguequeue.get(leaguename);
-        return draftqueue;
+
+        List<Draftqueue> subItems = new ArrayList<Draftqueue>();
+        if (draftqueue.size() < 64) {
+            subItems = draftqueue;
+        } else {
+            subItems = draftqueue.subList(0, 63);
+        }
+        return subItems;
     }
 
     /**
@@ -362,7 +372,7 @@ public class DraftController {
 
         List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
         draftqueue = leaguequeue.get(leaguename);
-        leaguetimer.put(leaguename, 30);
+        leaguetimer.put(leaguename, 59);
         if (draftqueue.size() != 0) {
             // get size of picks
             // int size = getDraftPicks(leaguename).size();
@@ -378,8 +388,8 @@ public class DraftController {
                         .getUsername());
 
             } else {
-                // 30 sec for pick
-                for (int i = 30; i > -1; i--) {
+                // 59 sec for pick
+                for (int i = 59; i > -1; i--) {
 
                     Thread.sleep(1000);
                     leaguetimer.put(leaguename, i);
@@ -485,9 +495,9 @@ public class DraftController {
         try {
             List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
             draftqueue = leaguequeue.get(leaguename);
-
+            int timer = leaguetimer.get(leaguename);
             if (draftqueue.get(0).getDraftqueueID().getTeam().getUuser().getUsername()
-                    .equals(username)) {
+                    .equals(username) && (timer < 100)) {
 
                 Leagues league = leaguesService.getLeaguebyName(leaguename);
                 Users user = usersService.getUserByName(username);
@@ -497,51 +507,61 @@ public class DraftController {
                 Lplayers player = new Lplayers();
                 player = lplayersService.getLplayer(lplayerID);
 
-                Roster roster = new Roster();
-                RosterID rosterID = new RosterID();
-                rosterID.setLplayer(player);
-                rosterID.setTeam(team);
-                roster.setRosterID(rosterID);
-                rosterService.saveRoster(roster);
+                List<Roster> teamroster = new ArrayList<Roster>();
+                teamroster = rosterService.getTeamRoster(team);
 
-                player.setPteam(team);
-                lplayersService.updatePlayer(player);
+                String position = player.getPplayer().getDefaultPosition();
 
-                // reload lplayers list
-                // !!!!!!!!!!!!!!DELETE PLAYER
-                Map<Integer, Lplayers> players = new LinkedHashMap<Integer, Lplayers>();
-                players = leagueplayers.get(leaguename);
-                players.remove(lplayerID);
+                // if roster position not full
+                if (DraftOperations.checkPosition(position, teamroster)) {
 
-                /* from draftqueue to draft picks */
-                Draftpicks draftpick = new Draftpicks();
-                draftpick.setDraftqueueID(draftqueue.get(0).getDraftqueueID());
-                draftpick.setLpplayer(player);
-                draftpicksService.saveDraftpick(draftpick);
+                    // create data in roster
+                    Roster roster = new Roster();
+                    RosterID rosterID = new RosterID();
+                    rosterID.setLplayer(player);
+                    rosterID.setTeam(team);
+                    roster.setRosterID(rosterID);
+                    rosterService.saveRoster(roster);
 
-                // add to leaguepicks
-                List<Draftpicks> draftpicks = new ArrayList<Draftpicks>();
-                draftpicks = leaguepicks.get(leaguename);
-                draftpicks.add(draftpick);
-                leaguepicks.put(leaguename, draftpicks);
+                    player.setPteam(team);
+                    lplayersService.updatePlayer(player);
 
-                // remove from DB
-                draftqueueService.deleteQueue(draftqueue.get(0));
-                // remove from leaguequeue
-                draftqueue.remove(0);
-                // update leaguequeue attribute
-                leaguequeue.put(leaguename, draftqueue);
+                    // reload lplayers list
+                    // !!!!!!!!!!!!!!DELETE PLAYER
+                    Map<Integer, Lplayers> players = new LinkedHashMap<Integer, Lplayers>();
+                    players = leagueplayers.get(leaguename);
+                    players.remove(lplayerID);
 
-                Integer picks = leaguepickscount.get(leaguename);
-                picks++;
-                leaguepickscount.put(leaguename, picks);
+                    /* from draftqueue to draft picks */
+                    Draftpicks draftpick = new Draftpicks();
+                    draftpick.setDraftqueueID(draftqueue.get(0).getDraftqueueID());
+                    draftpick.setLpplayer(player);
+                    draftpicksService.saveDraftpick(draftpick);
 
-                /*------------------------------*/
+                    // add to leaguepicks
+                    List<Draftpicks> draftpicks = new ArrayList<Draftpicks>();
+                    draftpicks = leaguepicks.get(leaguename);
+                    draftpicks.add(draftpick);
+                    leaguepicks.put(leaguename, draftpicks);
 
-                LOG.log(Level.INFO, "Player " + player.getPplayer().getLastname()
-                        + " drafted by team " + team.getName() + " ");
+                    // remove from DB
+                    draftqueueService.deleteQueue(draftqueue.get(0));
+                    // remove from leaguequeue
+                    draftqueue.remove(0);
+                    // update leaguequeue attribute
+                    leaguequeue.put(leaguename, draftqueue);
 
-                nextPick(leaguename); // to next pick
+                    Integer picks = leaguepickscount.get(leaguename);
+                    picks++;
+                    leaguepickscount.put(leaguename, picks);
+
+                    /*------------------------------*/
+
+                    LOG.log(Level.INFO, "Player " + player.getPplayer().getLastname()
+                            + " drafted by team " + team.getName() + " ");
+
+                    nextPick(leaguename); // to next pick
+                }
 
             }
 

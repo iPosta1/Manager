@@ -129,7 +129,7 @@ public class LeagueOperations {
                             gservice.saveGame(game); // save game
 
                         } catch (Exception e) {
-                           // LOG.log(Level.WARNING, "game exists ");
+                            // LOG.log(Level.WARNING, "game exists ");
                             // skip existing games (team1 vs team2 = team2 vs
                             // team1)
                             // LOG.log(Level.SEVERE, "Exception: ", e);
@@ -156,18 +156,36 @@ public class LeagueOperations {
                 standings = sservice.getDraftQueue(league);
 
                 /*---- generate draft queue ------*/
-                // 10 rounds
-                for (int round = 1; round < 21; round++) {
-                    for (int pick = 0; pick < standings.size(); pick++) {
-                        Draftqueue drq = new Draftqueue();
-                        DraftqueueID drqID = new DraftqueueID();
-                        drqID.setRound(round);
-                        //
-                        drqID.setPick(32 * (round - 1) + pick+1);
-                        drqID.setTeam(standings.get(pick).getSID().getTeam());
+                // 53 rounds
+                for (int round = 1; round < 54; round++) {
 
-                        drq.setDraftqueueID(drqID);
-                        dservice.saveQueue(drq);
+                    if ((round % 2) == 0) {
+                        
+                        for (int pick = standings.size()-1; pick >= 0; pick--) {
+                            Draftqueue drq = new Draftqueue();
+                            DraftqueueID drqID = new DraftqueueID();
+                            drqID.setRound(round);
+                            //
+                            drqID.setPick(32 * (round - 1) + pick + 1);
+                            drqID.setTeam(standings.get(standings.size() - (pick +1)).getSID().getTeam());
+
+                            drq.setDraftqueueID(drqID);
+                            dservice.saveQueue(drq);
+                        }
+
+                    } else {
+
+                        for (int pick = 0; pick < standings.size(); pick++) {
+                            Draftqueue drq = new Draftqueue();
+                            DraftqueueID drqID = new DraftqueueID();
+                            drqID.setRound(round);
+                            //
+                            drqID.setPick(32 * (round - 1) + pick + 1);
+                            drqID.setTeam(standings.get(pick).getSID().getTeam());
+
+                            drq.setDraftqueueID(drqID);
+                            dservice.saveQueue(drq);
+                        }
                     }
                 }
                 /*----------------------------*/

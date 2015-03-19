@@ -469,7 +469,7 @@ function getLastPick(leaguename) {
 		cache : false,
 		success : function(data) {
 			var row = $("<tr/>");
-			$("#draftPicks").prepend(row);
+			$("#draftPicks tbody").prepend(row);
 			row.prepend($("<td> Round " + data.draftqueueID.round + " pick "
 					+ data.draftqueueID.pick + ": " + data.draftqueueID.team.name
 					+ " picks " + data.lpplayer.pplayer.lastname + "</td>"));
@@ -492,6 +492,22 @@ function drawTable(data) {
 
 	$("#draft_p_table tbody tr").remove();
 	$("#draft_p_table_QB tbody tr").remove();
+	$("#draft_p_table_RB tbody tr").remove();
+	$("#draft_p_table_WR tbody tr").remove();
+	$("#draft_p_table_DE tbody tr").remove();
+	$("#draft_p_table_CB tbody tr").remove();
+	$("#draft_p_table_DT tbody tr").remove();
+	$("#draft_p_table_OT tbody tr").remove();
+	$("#draft_p_table_TE tbody tr").remove();
+	$("#draft_p_table_P tbody tr").remove();
+	$("#draft_p_table_K tbody tr").remove();
+	$("#draft_p_table_C tbody tr").remove();
+	$("#draft_p_table_OG tbody tr").remove();
+	$("#draft_p_table_FB tbody tr").remove();
+	$("#draft_p_table_FS tbody tr").remove();
+	$("#draft_p_table_SS tbody tr").remove();
+	$("#draft_p_table_MLB tbody tr").remove();
+	$("#draft_p_table_OLB tbody tr").remove();
 	for (var i=0 in data) {
 		drawRow(data[i], i);
 	}

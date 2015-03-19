@@ -58,70 +58,65 @@
 </head>
 <body>
 
-<table cellspacing="0" cellpadding="0" width="100%" height="100%"  >
-     
-    <tr > 
-   
-        <td  width="20%" >
-      
-            <div id="testblock">
+ <div id="testblock">
        <table cellspacing="0" cellpadding="0" width="100%" height="100%" id="draftTeams" >
             <tr><td></td></tr>
         </table>
         </div> 
+        
+        
          <div id="your_next_pick">
          <table cellspacing="0" cellpadding="0" width="100%" height="100%" id="yourNext" >
          </table>
             </div>
-                
-        </td>
-
-        <td width="80%">
-            <table cellspacing="0" cellpadding="0" width="100%" height="100%" align="center" >
-                <tr height="60%">
-                 
-                  <td>
-                  <table cellspacing="0" cellpadding="0" width="100%" height="100%" align="center" >
-                    <tr>
-                       <td width="40%">
-                           <table cellspacing="0" cellpadding="0" width="100%" height="100%" align="center" id="draftInfo" >
-                            <tr height="60%">
-                                <td>
-                                    <!-- ------PICKS------------- -->
-                             <table cellspacing="0" cellpadding="0" width="100%" height="100%" class="draft_p_table" id="draftPicks" >
-                                        <thead>
-                                            <tr>
-                                                  <td><div id="dhead" > Draft history </div></td> 
-                                            </tr>
-                                        </thead>
+            
+            <div id="bl_picks">
+              <!-- ------PICKS------------- -->
+                             <table cellspacing="0" cellpadding="0" width="100%" height="100%" id="draftPicks" >
                                         <tbody>
                                          <tr>
+                                         <td></td>
                                          </tr>
                                          </tbody>
                                 </table>
                             <!-- ----------Picks end------- -->
-                                </td> 
-                            </tr>
-                              <tr height="40%">
-                                <td id="draft_p_info">
-                                <label id="p_id"> </label>
-                                <label id="p_lastname"> </label>
-                                <label id="p_firstname"> </label>
-                                <label id="p_lastname"> </label>
-                                <label id="p_photo"> </label>
-                                <label id="p_birthdate"> </label>
-                                <label id="p_position"> </label>
-                                <input type="button" onclick="draftPlayer('${pageContext.request.userPrincipal.name}','${leaguename}')" value="Draft Player"/>
-
-                                </td> 
-                            </tr>
-                       </table>
-                       </td>
-                       
-                        <td width="60%">
-                        <!-- -----------ROSTER ---------- -->
+            </div>
+            
+              <div id="bl_info">
+             <table cellspacing="0" cellpadding="0" width="100%" height="100%" id="draft_p_info" >
+                                        <tbody>
+                                         <tr>
+                                         <td>
+                                         <label id="p_id"> </label>
+                                         </td>
+                                           <td>
+                                         <label id="p_firstname"> </label>
+                                         </td>
+                                           <td>
+                                         <label id="p_lastname"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_photo"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_birthdate"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_position"> </label>
+                                         </td>
+                                           <td>
+                                           <input type="button" onclick="draftPlayer('${pageContext.request.userPrincipal.name}','${leaguename}')" value="Draft Player"/>
+                                         </td>
+                                         </tr>
+                                         </tbody>
+                                </table>
+                                </div>
+                                
+                                
+                                <div id="bl_roster">
+                                 <!-- -----------ROSTER ---------- -->
                            <table cellspacing="0" cellpadding="0" width="100%" height="100%" align="center"  >
-                            <tr height="5%">
+                            <tr>
                                 <td>
                                     <div id="rosterName"></div>
                                 </td>
@@ -339,19 +334,11 @@
                             </tr>
                              
                        </table>
-                           <!-- ----------roster end---------- -->
-                        </td>
-                    </tr>
-                 
-                    </table>
-                
-                
-                
-                
-                <tr height="40%">
-                   <td>
-                
-                  <!-- --------------Players---------------- -->
+                           <!-- ----------roster end---------- -->      
+                                </div>
+                                
+                                
+                                  <!-- --------------Players---------------- -->
                   
                   <div id="draftpblock">
                 <div class="draftPlayersTabs">
@@ -412,7 +399,7 @@
                        <label for="dptab17" title="P">P</label>
                                      
                        <section id="dpcontent0">
-                        <table cellspacing="0" cellpadding="0" width="100%" height="100%" align="center" class="draft_p_table" id="draft_p_table" >
+                        <table cellspacing="0" cellpadding="0" width="100%" height="100%" align="center" id="draft_p_table" >
                       
                            <thead>
 
@@ -441,9 +428,10 @@
                         </tr>
   
             </thead>
-            <tbody>
+           
+                <tbody>
             <tr>
-             <td></td>
+            
             </tr>
             </tbody>
             
@@ -1044,21 +1032,5 @@
                </div>    
                 </div>
                   <!-- -------------players end------------- -->
-                
-                 
-                      
-                   </td>
-                </tr>
-                
-            </table>
-            
-            
-            
-            
-        </td>
-    
-    </tr>
-</table>
-
 </body>
 </html>
