@@ -221,7 +221,6 @@ public class DraftController {
                         draftqueue.get(i).setIsOnline(1);
                         draftqueueService.updateQueue(draftqueue.get(i));
                         leaguequeue.put(leaguename, draftqueue);
-                        System.err.println("player "+request.getUserPrincipal().getName()+" entered draft");
                     }
                 }
             }
@@ -233,7 +232,7 @@ public class DraftController {
 
         return "1";
     }
-
+ 
     /**
      * Leave draft
      * 
@@ -256,7 +255,6 @@ public class DraftController {
                         draftqueue.get(i).setIsOnline(0);
                         draftqueueService.updateQueue(draftqueue.get(i));
                         leaguequeue.put(leaguename, draftqueue);
-                        System.err.println("player "+request.getUserPrincipal().getName()+" left draft");
                     }
                 }
             }

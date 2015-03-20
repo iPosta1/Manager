@@ -2131,10 +2131,18 @@ font-size:14px;
 }
 
 #rosterPlayers{
-background:rgba(255,255,255,0.3); 
+background:rgba(255,255,255,0.2); 
 }
 
-
+#rosterDonePlayers{
+background:rgba(0,255,0,0.2); 
+}
+#rosterFullPlayers{
+background:rgba(255,0,0,0.2); 
+}
+#rosterNonePlayers{
+background:rgba(0,0,0,0.1); 
+}
 
 table #draftRoster thead tr{
     top:0;

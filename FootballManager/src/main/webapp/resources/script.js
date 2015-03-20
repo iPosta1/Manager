@@ -511,6 +511,24 @@ function drawTable(data) {
 	for (var i=0 in data) {
 		drawRow(data[i], i);
 	}
+	 $("#draft_p_table").tablesorter();
+	 $("#draft_p_table_QB").tablesorter();
+	 $("#draft_p_table_RB").tablesorter();
+	 $("#draft_p_table_WR").tablesorter();
+	 $("#draft_p_table_DE").tablesorter();
+	 $("#draft_p_table_CB").tablesorter();
+	 $("#draft_p_table_DT").tablesorter();
+	 $("#draft_p_table_OT").tablesorter();
+	 $("#draft_p_table_TE").tablesorter();
+	 $("#draft_p_table_P").tablesorter();
+	 $("#draft_p_table_K").tablesorter();
+	 $("#draft_p_table_C").tablesorter();
+	 $("#draft_p_table_OG").tablesorter();
+	 $("#draft_p_table_FB").tablesorter();
+	 $("#draft_p_table_FS").tablesorter();
+	 $("#draft_p_table_SS").tablesorter();
+	 $("#draft_p_table_MLB").tablesorter();
+	 $("#draft_p_table_OLB").tablesorter();
 }
 
 function drawRow(rowData, i) {
@@ -570,6 +588,8 @@ function drawRow(rowData, i) {
 	row.append($("<td width='5%'>" + rowData.pplayer.kickPower + "</td>"));
 	row.append($("<td width='5%'>" + rowData.pplayer.kickAccuracy + "</td>"));
 	row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>"));
+	
+
 	
 	if (rowData.pplayer.defaultPosition == "QB"){
 
@@ -1592,6 +1612,42 @@ function drawRoster(data) {
 	$("#draftRosterSS tbody tr").remove();
 	$("#draftRosterK tbody tr").remove();
 	$("#draftRosterP tbody tr").remove();
+	
+	$("#draftRosterQB thead tr td").html("QB (0/2)");
+	$("#draftRosterWR thead tr td").html("WR (0/4)");
+	$("#draftRosterRB thead tr td").html("RB (0/2)");
+	$("#draftRosterTE thead tr td").html("TE (0/2)");
+	$("#draftRosterFB thead tr td").html("FB (0/1)");
+	$("#draftRosterC thead tr td").html("C (0/2)");
+	$("#draftRosterOG thead tr td").html("OG (0/4)");
+	$("#draftRosterOT thead tr td").html("OT (0/4)");
+	$("#draftRosterDE thead tr td").html("DE (0/4)");
+	$("#draftRosterDT thead tr td").html("DT (0/4)");
+	$("#draftRosterMLB thead tr td").html("MLB (0/2)");
+	$("#draftRosterOLB thead tr td").html("OLB (0/4)");
+	$("#draftRosterCB thead tr td").html("CB (0/4)");
+	$("#draftRosterFS thead tr td").html("FS (0/2)");
+	$("#draftRosterSS thead tr td").html("SS (0/2)");
+	$("#draftRosterK thead tr td").html("K (0/1)");
+	$("#draftRosterP thead tr td").html("P (0/1)");
+	
+	$("#draftRosterQB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterWR thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterRB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterTE thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterFB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterC thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterOG thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterOT thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterDE thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterDT thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterMLB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterOLB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterCB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterFS thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterSS thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterK thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterP thead tr").attr("id","rosterNonePlayers");
 
 	for (var i = 0; i < data.length; i++) {
 		drawRosterRows(data[i], i + 1);
@@ -1606,88 +1662,295 @@ function drawRosterRows(rowData, num) {
 		$("#draftRosterQB").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterQB thead tr").remove();
+		var rowlength = $('#draftRosterQB tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> QB ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> QB ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td > QB ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterQB thead").append(header);
+		
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "WR") {
-		$("#draftRosterWR").append(row);
+		$("#draftRosterWR tbody").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterWR thead tr").remove();
+		var rowlength = $('#draftRosterWR tbody tr').length;
+		var header;
+		if (rowlength > 3 && rowlength <6) {
+			header = $("<tr id='rosterDonePlayers'><td> WR ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> WR ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> WR ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterWR thead").append(header);
+		
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "RB") {
 		$("#draftRosterRB").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterRB thead tr").remove();
+		var rowlength = $('#draftRosterRB tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> RB ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> RB ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> RB ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterRB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "TE") {
 		$("#draftRosterTE").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterTE thead tr").remove();
+		var rowlength = $('#draftRosterTE tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> TE ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> TE ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> TE ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterTE thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "FB") {
 		$("#draftRosterFB").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterFB thead tr").remove();
+		var rowlength = $('#draftRosterFB tbody tr').length;
+		var header;
+		if (rowlength == 2) {
+			header = $("<tr id='rosterFullPlayers'><td> FB ("+rowlength+"/1)</tr></td>");
+		} else if (rowlength == 1) {
+			header = $("<tr id='rosterDonePlayers'><td> FB ("+rowlength+"/1)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> FB ("+rowlength+"/1)</tr></td>");
+		} 
+		$("#draftRosterFB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "C") {
 		$("#draftRosterC").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterC thead tr").remove();
+		var rowlength = $('#draftRosterC tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> C ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> C ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> C ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterC thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "OT") {
-		$("#draftRosterOT").append(row);
+	$("#draftRosterOT").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterOT thead tr").remove();
+		var rowlength = $('#draftRosterOT tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> OT ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> OT ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> OT ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterOT thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "OG") {
 		$("#draftRosterOG").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterOG thead tr").remove();
+		var rowlength = $('#draftRosterOG tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> OG ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> OG ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> OG ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterOG thead").append(header);
 	}
 
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "MLB") {
 		$("#draftRosterMLB").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterMLB thead tr").remove();
+		var rowlength = $('#draftRosterMLB tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> MLB ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> MLB ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> MLB ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterMLB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "OLB") {
 		$("#draftRosterOLB").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterOLB thead tr").remove();
+		var rowlength = $('#draftRosterOLB tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> OLB ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> OLB ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> OLB ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterOLB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "CB") {
 		$("#draftRosterCB").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterCB thead tr").remove();
+		var rowlength = $('#draftRosterCB tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> CB ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> CB ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> CB ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterCB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "FS") {
 		$("#draftRosterFS").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterFS thead tr").remove();
+		var rowlength = $('#draftRosterFS tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> FS ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> FS ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> FS ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterFS thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "SS") {
+		
 		$("#draftRosterSS").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterSS thead tr").remove();
+		var rowlength = $('#draftRosterSS tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> SS ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> SS ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> SS ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterSS thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "DE") {
 		$("#draftRosterDE").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterDE thead tr").remove();
+		var rowlength = $('#draftRosterDE tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> DE ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> DE ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> DE ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterDE thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "DT") {
 		$("#draftRosterDT").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterDT thead tr").remove();
+		var rowlength = $('#draftRosterDT tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> DT ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> DT ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> DT ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterDT thead").append(header);
 	}
 
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "K") {
 		$("#draftRosterK").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterK thead tr").remove();
+		var rowlength = $('#draftRosterK tbody tr').length;
+		var header;
+		if (rowlength == 2) {
+			header = $("<tr id='rosterFullPlayers'><td> K ("+rowlength+"/1)</tr></td>");
+		} else if (rowlength == 1) {
+			header = $("<tr id='rosterDonePlayers'><td> K ("+rowlength+"/1)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> K ("+rowlength+"/1)</tr></td>");
+		}
+		$("#draftRosterK thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "P") {
 		$("#draftRosterP").append(row);
 		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterP thead tr").remove();
+		var rowlength = $('#draftRosterP tbody tr').length;
+		var header;
+		if (rowlength == 2) {
+			header = $("<tr id='rosterFullPlayers'><td> P ("+rowlength+"/1)</tr></td>");
+		} else if (rowlength == 1) {
+			header = $("<tr id='rosterDonePlayers'><td> P ("+rowlength+"/1)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> P ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterP thead").append(header);
 	}
 
 }
@@ -1941,8 +2204,6 @@ function removePlayer(leaguename){
 function deletePlayer(id){
 $("tr#"+id+"").remove();
 }
-
-
 
 
 

@@ -2475,10 +2475,10 @@ public class DraftOperations {
             if (playersOnPositionCount("FS", teamroster) < 2) {
                 positions.add("FS");
             }
-            if (playersOnPositionCount("WR", teamroster) < 3) {
+            if (playersOnPositionCount("WR", teamroster) < 4) {
                 positions.add("WR");
             }
-            if (playersOnPositionCount("CB", teamroster) < 3) {
+            if (playersOnPositionCount("CB", teamroster) < 4) {
                 positions.add("CB");
             }
 
@@ -2497,7 +2497,7 @@ public class DraftOperations {
                                                                  // position
             System.err.println(player.getPplayer().getLastname());
         }
-        
+
         /*----------round 44  all----------------- */
         if (teamroster.size() == 43) {
             // select all
@@ -2539,10 +2539,10 @@ public class DraftOperations {
             if (playersOnPositionCount("FS", teamroster) < 2) {
                 positions.add("FS");
             }
-            if (playersOnPositionCount("WR", teamroster) < 3) {
+            if (playersOnPositionCount("WR", teamroster) < 4) {
                 positions.add("WR");
             }
-            if (playersOnPositionCount("CB", teamroster) < 3) {
+            if (playersOnPositionCount("CB", teamroster) < 4) {
                 positions.add("CB");
             }
 
@@ -2554,6 +2554,199 @@ public class DraftOperations {
             }
             if (playersOnPositionCount("P", teamroster) == 0) {
                 positions.add("P");
+            }
+
+            player = lpservice.playerToDraft(positions, league); // get top
+                                                                 // player by
+                                                                 // position
+            System.err.println(player.getPplayer().getLastname());
+        }
+
+        /*----------round 45  all----------------- */
+        if (teamroster.size() == 44) {
+            // select all
+            List<String> positions = new ArrayList<String>();
+
+            if (playersOnPositionCount("OG", teamroster) < 4) {
+                positions.add("OG");
+            }
+            if (playersOnPositionCount("C", teamroster) < 2) {
+                positions.add("C");
+            }
+            if (playersOnPositionCount("QB", teamroster) < 2) {
+                positions.add("QB");
+            }
+            if (playersOnPositionCount("RB", teamroster) < 2) {
+                positions.add("RB");
+            }
+            if (playersOnPositionCount("DE", teamroster) < 4) {
+                positions.add("DE");
+            }
+            if (playersOnPositionCount("DT", teamroster) < 4) {
+                positions.add("DT");
+            }
+            if (playersOnPositionCount("TE", teamroster) < 2) {
+                positions.add("TE");
+            }
+            if (playersOnPositionCount("OLB", teamroster) < 4) {
+                positions.add("OLB");
+            }
+            if (playersOnPositionCount("MLB", teamroster) < 2) {
+                positions.add("MLB");
+            }
+            if (playersOnPositionCount("OT", teamroster) < 4) {
+                positions.add("OT");
+            }
+            if (playersOnPositionCount("SS", teamroster) < 2) {
+                positions.add("SS");
+            }
+            if (playersOnPositionCount("FS", teamroster) < 2) {
+                positions.add("FS");
+            }
+            if (playersOnPositionCount("WR", teamroster) < 4) {
+                positions.add("WR");
+            }
+            if (playersOnPositionCount("CB", teamroster) < 4) {
+                positions.add("CB");
+            }
+
+            if (playersOnPositionCount("FB", teamroster) == 0) {
+                positions.add("FB");
+            }
+            if (playersOnPositionCount("K", teamroster) == 0) {
+                positions.add("K");
+            }
+            if (playersOnPositionCount("P", teamroster) == 0) {
+                positions.add("P");
+            }
+
+            player = lpservice.playerToDraft(positions, league); // get top
+                                                                 // player by
+                                                                 // position
+            System.err.println(player.getPplayer().getLastname());
+        }
+
+        /*----------round 46-53  all full and other----------------- */
+        if (teamroster.size() == 45 || teamroster.size() == 46 || teamroster.size() == 47
+                || teamroster.size() == 48 || teamroster.size() == 49 || teamroster.size() == 50
+                || teamroster.size() == 51 || teamroster.size() == 52 || teamroster.size() == 53) {
+            // select all
+            List<String> positions = new ArrayList<String>();
+
+            int count = 0;
+
+            if (playersOnPositionCount("OG", teamroster) < 4) {
+                positions.add("OG");
+                count++;
+            }
+            if (playersOnPositionCount("C", teamroster) < 2) {
+                positions.add("C");
+                count++;
+            }
+            if (playersOnPositionCount("QB", teamroster) < 2) {
+                positions.add("QB");
+                count++;
+            }
+            if (playersOnPositionCount("RB", teamroster) < 2) {
+                positions.add("RB");
+                count++;
+            }
+            if (playersOnPositionCount("DE", teamroster) < 4) {
+                positions.add("DE");
+                count++;
+            }
+            if (playersOnPositionCount("DT", teamroster) < 4) {
+                positions.add("DT");
+                count++;
+            }
+            if (playersOnPositionCount("TE", teamroster) < 2) {
+                positions.add("TE");
+                count++;
+            }
+            if (playersOnPositionCount("OLB", teamroster) < 4) {
+                positions.add("OLB");
+                count++;
+            }
+            if (playersOnPositionCount("MLB", teamroster) < 2) {
+                positions.add("MLB");
+                count++;
+            }
+            if (playersOnPositionCount("OT", teamroster) < 4) {
+                positions.add("OT");
+                count++;
+            }
+            if (playersOnPositionCount("SS", teamroster) < 2) {
+                positions.add("SS");
+                count++;
+            }
+            if (playersOnPositionCount("FS", teamroster) < 2) {
+                positions.add("FS");
+                count++;
+            }
+            if (playersOnPositionCount("WR", teamroster) < 4) {
+                positions.add("WR");
+                count++;
+            }
+            if (playersOnPositionCount("CB", teamroster) < 4) {
+                positions.add("CB");
+                count++;
+            }
+
+            if (playersOnPositionCount("FB", teamroster) == 0) {
+                positions.add("FB");
+                count++;
+            }
+            if (playersOnPositionCount("K", teamroster) == 0) {
+                positions.add("K");
+                count++;
+            }
+            if (playersOnPositionCount("P", teamroster) == 0) {
+                positions.add("P");
+                count++;
+            }
+            if (count == 0) {
+
+                if (playersOnPositionCount("WR", teamroster) < 5) {
+                    positions.add("WR");
+                }
+                if (playersOnPositionCount("CB", teamroster) < 5) {
+                    positions.add("CB");
+                }
+                if (playersOnPositionCount("QB", teamroster) < 3) {
+                    positions.add("QB");
+                }
+                if (playersOnPositionCount("RB", teamroster) < 3) {
+                    positions.add("RB");
+
+                }
+                if (playersOnPositionCount("SS", teamroster) < 3) {
+                    positions.add("SS");
+                }
+                if (playersOnPositionCount("FS", teamroster) < 3) {
+                    positions.add("FS");
+                }
+                if (playersOnPositionCount("DE", teamroster) < 5) {
+                    positions.add("DE");
+                }
+                if (playersOnPositionCount("DT", teamroster) < 5) {
+                    positions.add("DT");
+                }
+                if (playersOnPositionCount("TE", teamroster) < 3) {
+                    positions.add("TE");
+                }
+                if (playersOnPositionCount("OLB", teamroster) < 5) {
+                    positions.add("OLB");
+                }
+                if (playersOnPositionCount("MLB", teamroster) < 3) {
+                    positions.add("MLB");
+                }
+                if (playersOnPositionCount("OT", teamroster) < 5) {
+                    positions.add("OT");
+                }
+                if (playersOnPositionCount("OG", teamroster) < 5) {
+                    positions.add("OG");
+                }
+
             }
 
             player = lpservice.playerToDraft(positions, league); // get top
@@ -2589,11 +2782,11 @@ public class DraftOperations {
         int count = 0;
         count = playersOnPositionCount(position, teamroster);
 
-        // maximum 5, minimum 4
+        // maximum 6, minimum 4
         if (position.equals("WR") || position.equals("CB") || position.equals("OLB")
                 || position.equals("DE") || position.equals("DT") || position.equals("OT")
                 || position.equals("OG")) {
-            if (count > 4) {
+            if (count > 5) {
                 result = false;
             } else
                 result = true;

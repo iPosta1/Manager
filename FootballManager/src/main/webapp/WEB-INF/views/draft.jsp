@@ -14,7 +14,7 @@
 <script src="${pageContext.request.contextPath}/resources/script.js"></script>
 <script src="${pageContext.request.contextPath}/resources/jquery-1.11.2.js"></script>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/resources/jquery.tablesorter.js" type="text/javascript"></script>
 
  <script>
 
@@ -32,7 +32,7 @@
  $(document).ready(
          function() {
              var leaguename = '${leaguename}';
-       
+           
              loadTables(leaguename);
 
              setInterval(function() {
@@ -40,6 +40,8 @@
                   checkUpdateState(leaguename);
                   updateTimer(leaguename);
                   }, 1000);
+
+            	    
              
             // $("#draft_p_table tr").click(function(){
             //       });
@@ -128,7 +130,7 @@
                                         <td width="12%">
                                                                  <table  align="center" id="draftRosterQB" >
                                                                   <thead>
-                                                                     <tr><td>QB</td></tr>
+                                                                     <tr><td>QB (0/2)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -139,7 +141,7 @@
                                          <td width="12%">
                                            <table  align="center" id="draftRosterWR" >
                                                                   <thead>
-                                                                     <tr><td>WR</td></tr>
+                                                                     <tr><td>WR (0/4)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -149,7 +151,7 @@
                                          <td width="12%">
                                            <table  align="center" id="draftRosterRB" >
                                                                   <thead>
-                                                                     <tr><td>RB</td></tr>
+                                                                     <tr><td>RB (0/2)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -159,7 +161,7 @@
                                          <td width="12%">
                                         <table  align="center" id="draftRosterTE" >
                                                                   <thead>
-                                                                     <tr><td>TE</td></tr>
+                                                                     <tr><td>TE (0/2)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -169,7 +171,7 @@
                                          <td width="12%">
                                         <table align="center" id="draftRosterFB" >
                                                                   <thead>
-                                                                     <tr><td>FB</td></tr>
+                                                                     <tr><td>FB (0/1)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -185,7 +187,7 @@
                                             <td width="12%">
                                         <table  align="center" id="draftRosterC" >
                                                                   <thead>
-                                                                     <tr><td>C</td></tr>
+                                                                     <tr><td>C (0/2)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -196,7 +198,7 @@
                                          <td width="12%">
                                         <table  align="center" id="draftRosterOT" >
                                                                   <thead>
-                                                                     <tr><td>OT</td></tr>
+                                                                     <tr><td>OT (0/4)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -206,7 +208,7 @@
                                          <td width="12%">
                                         <table  align="center" id="draftRosterOG" >
                                                                   <thead>
-                                                                     <tr><td>OG</td></tr>
+                                                                     <tr><td>OG (0/4)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -216,7 +218,7 @@
                                          <td width="12%">
                                         <table align="center" id="draftRosterDE" >
                                                                   <thead>
-                                                                     <tr><td>DE</td></tr>
+                                                                     <tr><td>DE (0/4)</td></tr>
                                                                   </thead>
                                                                   <tbbody>
                                                                      <tr><td> </td></tr>
@@ -226,7 +228,7 @@
                                          <td width="12%">
                                          <table align="center" id="draftRosterCB" >
                                                                   <thead>
-                                                                     <tr><td>CB</td></tr>
+                                                                     <tr><td>CB (0/4)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -241,7 +243,7 @@
                                        <td width="12%">
                                         <table  align="center" id="draftRosterSS" >
                                                                   <thead>
-                                                                     <tr><td>SS</td></tr>
+                                                                     <tr><td>SS (0/2)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -252,7 +254,7 @@
                                          <td width="12%">
                                             <table  align="center" id="draftRosterFS" >
                                                                   <thead>
-                                                                     <tr><td>FS</td></tr>
+                                                                     <tr><td>FS (0/2)</td></tr>
                                                                   </thead>
                                                                   <tbbody>
                                                                      <tr><td> </td></tr>
@@ -263,7 +265,7 @@
                                          <td width="12%">
                                         <table  align="center" id="draftRosterOLB" >
                                                                   <thead>
-                                                                     <tr><td>OLB</td></tr>
+                                                                     <tr><td>OLB (0/4)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -273,7 +275,7 @@
                                          <td width="12%">
                                         <table  align="center" id="draftRosterMLB" >
                                                                   <thead>
-                                                                     <tr><td>MLB</td></tr>
+                                                                     <tr><td>MLB (0/2)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -283,7 +285,7 @@
                                          <td width="12%">
                                          <table  align="center" id="draftRosterDT" >
                                                                   <thead>
-                                                                     <tr><td>DT</td></tr>
+                                                                     <tr><td>DT (0/4)</td></tr>
                                                                   </thead>
                                                                   <tbody>
                                                                      <tr><td> </td></tr>
@@ -298,7 +300,7 @@
                                            <td width="12%">
                                             <table  align="center" id="draftRosterK" >
                                                                       <thead>
-                                                                         <tr><td>Kicker</td></tr>
+                                                                         <tr><td>Kicker (0/1)</td></tr>
                                                                       </thead>
                                                                       <tbody>
                                                                          <tr><td> </td></tr>
@@ -309,7 +311,7 @@
                                           <td width="12%">
                                             <table  align="center" id="draftRosterP" >
                                                                       <thead>
-                                                                         <tr><td>Punter</td></tr>
+                                                                         <tr><td>Punter (0/1)</td></tr>
                                                                       </thead>
                                                                       <tbody>
                                                                          <tr><td> </td></tr>
@@ -405,25 +407,25 @@
 
                       <tr>
                          <!--  <td width="3%"><div id="dhead" > № </div></td>  -->
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td  width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">throw power </div></td>
-                          <td width="5%">   <div id="dhead">throw accuracy </div></td>
-                          <td width="5%">   <div id="dhead">kick power </div></td>
-                          <td width="5%">   <div id="dhead">kick accuracy </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                          <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">throw power </div></th>
+                          <th width="5%">   <div id="dhead">throw accuracy </div></th>
+                          <th width="5%">   <div id="dhead">kick power </div></th>
+                          <th width="5%">   <div id="dhead">kick accuracy </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -431,7 +433,11 @@
            
                 <tbody>
             <tr>
+   
+            </tr>
             
+             <tr>
+           
             </tr>
             </tbody>
             
@@ -447,22 +453,23 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">throw power </div></td>
-                          <td width="5%">   <div id="dhead">throw accuracy </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                          
+                           <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%">   <div id="dhead">throw power </div></th>
+                          <th width="5%">   <div id="dhead">throw accuracy </div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>                 
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -482,21 +489,23 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+
+                          <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
+             
           
                         </tr>
   
@@ -516,21 +525,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                          <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -550,21 +559,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                          <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -584,21 +593,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                         <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -618,21 +627,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                          <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -652,21 +661,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                          <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -686,21 +695,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                         <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -720,21 +729,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                         <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -754,21 +763,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                         <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -788,21 +797,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                         <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -822,21 +831,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                         <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -856,21 +865,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                          <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -890,21 +899,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                          <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -924,21 +933,21 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
+                         <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
           
                         </tr>
   
@@ -958,26 +967,27 @@
                            <thead>
 
                       <tr>
-                          <td width="15%"><div id="dhead" > player </div></td> 
-                          <td width="5%">   <div id="dhead">age </div></td>
-                          <td width="5%">   <div id="dhead">height </div></td>
-                          <td width="5%">   <div id="dhead">weight </div></td>
-                          <td width="5%">   <div id="dhead">position </div></td>
-                          <td width="5%">   <div id="dhead">overall </div></td>
-                          <td width="5%">   <div id="dhead">kick power </div></td>
-                          <td width="5%">   <div id="dhead">kick accuracy </div></td>
-                          <td width="5%">   <div id="dhead">throw power </div></td>
-                          <td width="5%">   <div id="dhead">throw accuracy </div></td>
-                          <td width="5%">   <div id="dhead">speed </div></td>
-                          <td width="5%">   <div id="dhead">agility </div></td>
-                          <td width="5%">   <div id="dhead">awareness </div></td>
-                          <td width="5%">   <div id="dhead">catching </div></td>
-                          <td width="5%">   <div id="dhead">carrying </div></td>
-                          <td width="5%">   <div id="dhead">tackling </div></td>
-                          <td width="5%">   <div id="dhead">break tackle </div></td>
-                          <td width="5%">   <div id="dhead">jumping </div></td>
-                          <td width="5%">   <div id="dhead">strength </div></td>
-          
+                      
+                      <th width="15%">  <div id="dhead" > player </div></th> 
+                          <th width="5%">   <div id="dhead">age</div> </th>
+                          <th width="5%">   <div id="dhead">height </div></th>
+                          <th width="5%">   <div id="dhead">weight </div></th>
+                          <th width="5%">   <div id="dhead">position </div></th>
+                          <th width="5%">   <div id="dhead">overall</div></th>
+                           <th width="5%">   <div id="dhead">kick power </div></th>
+                          <th width="5%">   <div id="dhead">kick accuracy </div></th>
+                          <th width="5%">   <div id="dhead">throw power </div></th>
+                          <th width="5%">   <div id="dhead">throw accuracy </div></th>
+                          <th width="5%" >  <div id="dhead">speed</div> </th>
+                          <th width="5%">   <div id="dhead">agility </div></th>
+                          <th width="5%">   <div id="dhead">awareness </div></th>
+                          <th width="5%">   <div id="dhead">catching </div></th>
+                          <th width="5%">   <div id="dhead">carrying </div></th>
+                          <th width="5%">   <div id="dhead">tackling </div></th>
+                          <th width="5%">   <div id="dhead">break tackle </div></th>
+                          <th  width="5%">   <div id="dhead">jumping </div></th>
+                          <th width="5%">   <div id="dhead">strength </div></th>
+                      
                         </tr>
   
             </thead>
