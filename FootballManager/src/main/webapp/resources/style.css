@@ -791,6 +791,137 @@ height:100%;
     
  /*=================================================================*/
  
+ .wheel {
+    z-index: 100;
+ 
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 2000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 2000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 2000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+ 
+    animation-name: spin;
+    animation-duration: 2000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(360deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(360deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+ 
+ 
+#page_loader {
+width:100%;
+height:100%;
+position:fixed;
+z-index:1000;   
+background:url(images/blackstripes.png) repeat;
+display:block;
+
+}
+
+#page_load_spinner{
+	position:fixed;
+     width: 150px;
+    height: 150px;
+    text_align:center;
+   left:50%;
+   top:50%;
+   margin-left:-75px;
+    background:url(images/circle.png); 
+     background-size: cover; 
+     
+}
+
+#page_name_text{
+     width: 100%;
+    height: 100%;
+    text-align:center;
+    margin: 0 auto;
+    padding-top:15%;
+    
+ font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+font-weight:bold;
+font-size:60px;
+color: rgba(48,48,48,1);
+text-shadow: 1px 1px 0 rgba(140,140,140,0.3) , -1px -1px 1px rgba(0,0,0,0.67) ;
+}
+
+#page_load_text{
+	position:fixed;
+    text-align:center;
+     width: 100%;
+    height: 45px;
+
+
+   top:55%;
+   z-index:100;
+   background:url(images/blackstripes.png) repeat;  
+ font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+font-weight:bold;
+font-size:40px;
+color: rgba(48,48,48,1);
+text-shadow: 1px 1px 0 rgba(140,140,140,0.3) , -1px -1px 1px rgba(0,0,0,0.67) ;
+
+}
+
+#roster_loading{
+top:0;
+right:0;
+width:48%;
+height:60%; 
+position:fixed;
+z-index:100;
+background:url(images/blackstripes.png) repeat; 
+
+ 
+}
+#load_spinner{
+     width: 70px;
+    height: 70px;
+    margin: 0 auto;
+     background:url(images/circle.png); 
+     background-size: cover; 
+}
+
+#load_text{
+     width: 250px;
+    height: 250px;
+    text-align:center;
+    margin: 0 auto;
+    margin-top:45%;
+    
+ font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+font-weight:bold;
+font-size:40px;
+color: rgba(48,48,48,1);
+text-shadow: 1px 1px 0 rgba(140,140,140,0.3) , -1px -1px 1px rgba(0,0,0,0.67) ;
+
+}
  
  body{
  background-image: linear-gradient(to bottom, black, #444444);
@@ -799,6 +930,8 @@ height:100%;
   height:100%;
  
  }
+ 
+ 
  #small_logo{
  height:137px;
 width:200px;
@@ -1993,6 +2126,9 @@ width:48%;
 height:60%;	
 position:fixed;
 }
+
+
+
 #bl_info{
 top:32%;
 left:20%;

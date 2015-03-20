@@ -323,7 +323,10 @@ function dropTeamFromQ() {
 var selectedRow; // Selected row in player's table
 
 /* setting players info */
-function p_info(id, firstname, lastname, photo, birthdate, position, row) {
+function p_info(id, firstname, lastname, photo, birthdate,
+		position,ovr,speed,agility,awareness,catching,carrying,
+		tackling,breakTackle,jumping,tpower,taccuracy,kpower,
+		kaccuracy,strength, row) {
 
 	document.getElementById('p_id').innerHTML = id;
 	document.getElementById('p_firstname').innerHTML = firstname;
@@ -331,6 +334,20 @@ function p_info(id, firstname, lastname, photo, birthdate, position, row) {
 	document.getElementById('p_photo').innerHTML = photo;
 	document.getElementById('p_birthdate').innerHTML = birthdate;
 	document.getElementById('p_position').innerHTML = position;
+	document.getElementById('p_ovr').innerHTML = ovr;
+	document.getElementById('p_speed').innerHTML = speed;
+	document.getElementById('p_agility').innerHTML = agility;
+	document.getElementById('p_awareness').innerHTML = awareness;
+	document.getElementById('p_catching').innerHTML = catching;
+	document.getElementById('p_carrying').innerHTML = carrying;
+	document.getElementById('p_tackling').innerHTML = tackling;
+	document.getElementById('p_breaktackle').innerHTML = breakTackle;
+	document.getElementById('p_jumping').innerHTML = jumping;
+	document.getElementById('p_throwpower').innerHTML = tpower;
+	document.getElementById('p_throwaccuracy').innerHTML = taccuracy;
+	document.getElementById('p_kickpower').innerHTML = kpower;
+	document.getElementById('p_kickaccuracy').innerHTML = kaccuracy;
+	document.getElementById('p_strength').innerHTML = strength;
 
 	selectedRow = row; // get selected row
 }
@@ -368,6 +385,7 @@ function draftPlayer(username, leaguename) {
 }
 
 function getPlayers(leaguename) {
+	document.getElementById("page_loader").style.display = "block";
 	$.ajax({
 		type : 'get',
 		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
@@ -378,7 +396,7 @@ function getPlayers(leaguename) {
 		success : function(data) {
 			//alert(JSON.stringify(data));
 			drawTable(data);
-			
+			document.getElementById("page_loader").style.display = "none";
 
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
@@ -393,6 +411,7 @@ var principalName; // principal's name
 
 
 function getRosterTeam(leaguename,user) {
+	document.getElementById("roster_loading").style.visibility = "visible";
 	$.ajax({
 		type : 'get',
 		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
@@ -405,7 +424,7 @@ function getRosterTeam(leaguename,user) {
 		},
 		success : function(data) {
 			drawRoster(data);
-           	      
+				document.getElementById("roster_loading").style.visibility = "hidden";      
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
 
@@ -539,7 +558,21 @@ function drawRow(rowData, i) {
 			+ JSON.stringify(rowData.pplayer.lastname) + ","
 			+ JSON.stringify(rowData.pplayer.photo) + ","
 			+ getAge(new Date(rowData.pplayer.birthdate)) + ","
-			+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+			+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+			+ JSON.stringify(rowData.pplayer.ovr) + "," 
+			+ JSON.stringify(rowData.pplayer.speed) + ","
+			+ JSON.stringify(rowData.pplayer.agility) + ","
+			+ JSON.stringify(rowData.pplayer.awareness) + ","
+			+ JSON.stringify(rowData.pplayer.catching) + ","
+			+ JSON.stringify(rowData.pplayer.carrying) + ","
+			+ JSON.stringify(rowData.pplayer.tackling) + ","
+			+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+			+ JSON.stringify(rowData.pplayer.jumping) + ","
+			+ JSON.stringify(rowData.pplayer.throwPower) + ","
+			+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+			+ JSON.stringify(rowData.pplayer.kickPower) + ","
+			+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+			+ JSON.stringify(rowData.pplayer.strength) + ")'/>");
 
 	$(row).click(function() {
 		var selected = $(this).hasClass("highlight");
@@ -1660,7 +1693,7 @@ function drawRosterRows(rowData, num) {
 
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "QB") {
 		$("#draftRosterQB").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>"+ rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
 		
 		$("#draftRosterQB thead tr").remove();

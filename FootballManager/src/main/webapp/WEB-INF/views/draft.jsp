@@ -27,12 +27,11 @@
          var leaguename = '${leaguename}';
          leaveDraft(leaguename);
     }
-      
  
  $(document).ready(
          function() {
              var leaguename = '${leaguename}';
-           
+        
              loadTables(leaguename);
 
              setInterval(function() {
@@ -41,8 +40,9 @@
                   updateTimer(leaguename);
                   }, 1000);
 
-            	    
-             
+
+               
+                  
             // $("#draft_p_table tr").click(function(){
             //       });
             // setInterval(function() {
@@ -50,7 +50,7 @@
           //  getPlayers(leaguename);
            //  }, 30000);
 
-        
+            
              
          });
 
@@ -59,7 +59,14 @@
         </script>
 </head>
 <body>
+<!-- ----------- -->
 
+	<div id="page_loader">
+	   <div id="page_name_text">FANTASY DRAFT </div>  <div class="wheel" id="page_load_spinner"></div>
+	
+<div id="page_load_text">LOADING</div>
+	</div>
+<!-- -------------- -->
  <div id="testblock">
        <table cellspacing="0" cellpadding="0" width="100%" height="100%" id="draftTeams" >
             <tr><td></td></tr>
@@ -110,10 +117,62 @@
                                            <input type="button" onclick="draftPlayer('${pageContext.request.userPrincipal.name}','${leaguename}')" value="Draft Player"/>
                                          </td>
                                          </tr>
+                                         <tr>
+                                                <td>
+                                         <label id="p_ovr"> </label>
+                                         </td>
+                                           <td>
+                                         <label id="p_speed"> </label>
+                                         </td>
+                                           <td>
+                                         <label id="p_agility"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_awareness"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_catching"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_carrying"> </label>
+                                         </td>
+                                           <td>
+                                           <label id="p_tackling"> </label>
+                                         </td>
+                                         </tr>
+                                         
+                                          <tr>
+                                          <td>
+                                         <label id="p_breaktackle"> </label>
+                                         </td>
+                                           <td>
+                                         <label id="p_jumping"> </label>
+                                         </td>
+                                           <td>
+                                         <label id="p_throwpower"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_throwaccuracy"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_kickpower"> </label>
+                                         </td>
+                                           <td>
+                                          <label id="p_kickaccuracy"> </label>
+                                         </td>
+                                           <td>
+                                           <label id="p_strength"> </label>
+                                         </td>
+                                         </tr>
                                          </tbody>
                                 </table>
                                 </div>
                                 
+                                <div id="roster_loading">
+                                <div id="load_text">LOADING</div>
+                               
+                             
+                                </div>
                                 
                                 <div id="bl_roster">
                                  <!-- -----------ROSTER ---------- -->
