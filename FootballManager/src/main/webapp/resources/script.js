@@ -412,6 +412,7 @@ var principalName; // principal's name
 
 function getRosterTeam(leaguename,user) {
 	document.getElementById("roster_loading").style.visibility = "visible";
+	document.getElementById("roster_loading").style.opacity = "1"; 
 	$.ajax({
 		type : 'get',
 		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
@@ -424,7 +425,8 @@ function getRosterTeam(leaguename,user) {
 		},
 		success : function(data) {
 			drawRoster(data);
-				document.getElementById("roster_loading").style.visibility = "hidden";      
+				document.getElementById("roster_loading").style.visibility = "hidden";   
+				document.getElementById("roster_loading").style.opacity = "0"; 
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
 
@@ -1546,11 +1548,11 @@ function drawTableQueue(data,leaguename) {
 
 		}
 	
-		if (i < 20) drawRowQueue(data[i], i,leaguename);
+		if (i < 25) drawRowQueue(data[i], i,leaguename);
 		
 	}
 }
-
+var round=0;
 function drawRowQueue(rowData, num,league) {
 	//console.log("<tr onclick='getRosterTeam("+league+","+rowData.draftqueueID.team.uuser.username+")' />");
 
@@ -1562,7 +1564,7 @@ function drawRowQueue(rowData, num,league) {
 		});
 
   
-	$("#draftTeams").prepend(row);
+	
 	//row.click(getRosterTeam(league,rowData.draftqueueID.team.uuser.username));
 	
 	
@@ -1571,49 +1573,64 @@ function drawRowQueue(rowData, num,league) {
 	
 	 
 	if (num == 0) {
+		$("#draftTeams").prepend(row);
 		if (principalName == rowData.draftqueueID.team.uuser.username) {		
-			row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
+			
+			row.prepend($("<td><div id='onclock'><div id='drinfo'></div><div id='onclock_round'>Round " + rowData.draftqueueID.round
 					+" pick "+rowData.draftqueueID.pick
-					+ "<div id='drafttpanel_your'>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
+					+ "</div><div id='drafttpanel_online'>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
 					+ "</div></div><div id='drtime'></div></div></td>"));
 		} else {
 			if (rowData.isOnline ==1) {
-				row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
+				
+				row.prepend($("<td><div id='onclock'><div id='drinfo'></div><div id='onclock_round'>Round " + rowData.draftqueueID.round
 						+" pick "+rowData.draftqueueID.pick
-						+ "<div id='drafttpanel_online'>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
+						+ "</div><div id='drafttpanel_online'>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
 						+ "</div></div><div id='drtime'></div></div></td>"));
+				
 			}else {
-				row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
+				row.prepend($("<td><div id='onclock'><div id='drinfo'></div><div id='onclock_round'>Round " + rowData.draftqueueID.round
 						+" pick "+rowData.draftqueueID.pick
-						+ "<div id='drafttpanel_online'>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
+						+ "</div><div id='drafttpanel'>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
 						+ "</div></div><div id='drtime'></div></div></td>"));
 			}
 		}
 	} else {
-
+		
+		
+		if (round != rowData.draftqueueID.round){
+			var newrow = $("<tr/>");
+		$("#draftTeams").prepend(newrow);
+		newrow.prepend($("<td><div id='round_header'>Round "+(rowData.draftqueueID.round+1)+"</div></td>"));
+		}
+		
+		$("#draftTeams").prepend(row);
+		
 		if (principalName == rowData.draftqueueID.team.uuser.username) {
-			row.prepend($("<td><div id='drpick'>Round " + rowData.draftqueueID.round
+			
+			row.prepend($("<td><div id='drafttpanel_online'><div id='teamround'>Round " + rowData.draftqueueID.round
 					+" pick "+rowData.draftqueueID.pick
-					+ "</div><div id='drafttpanel_your'>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
+					+ "</div>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
 					+ "</div></div></td>"));
 		} else {
 				if (rowData.isOnline ==1) {
-					row.prepend($("<td><div id='drpick'>Round " + rowData.draftqueueID.round
+					
+					row.prepend($("<td><div id='drafttpanel_online'><div id='teamround'>Round " + rowData.draftqueueID.round
 							+" pick "+rowData.draftqueueID.pick
-							+ "</div><div id='drafttpanel_online'>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
+							+ "</div>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
 							+ "</div></div></td>"));
 				} else {
 	            
-					row.prepend($("<td><div id='drpick'>Round " + rowData.draftqueueID.round
+					row.prepend($("<td><div id='drafttpanel'><div id='teamround'>Round " + rowData.draftqueueID.round
 					+" pick "+rowData.draftqueueID.pick
-					+ "</div><div id='drafttpanel'>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
+					+ "</div>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
 					+ "</div></div></td>"));
 					
 					
 				}
 		}
 	}
-	
+	round = rowData.draftqueueID.round;
 
 }
 				/* var img = $("<img />");
@@ -2205,11 +2222,28 @@ function updateTimer(leaguename) {
 				document.getElementById('drtime').innerHTML = "autopick";
 			} else if (data>99) {
 				var sec = data-100;
-				document.getElementById('drtime').innerHTML = "Draft starting in "+sec +" seconds";
-			} else if (data<10) {
-				document.getElementById('drtime').innerHTML = "0:0"+data;
+				
+				var hours = parseInt( sec / 3600 ) % 24;
+				var minutes = parseInt( sec / 60 ) % 60;
+				var seconds = sec % 60;
+				
+				if (hours < 10) hours = "0"+hours;
+				if (minutes < 10) minutes = "0"+minutes;
+				if (seconds < 10) seconds = "0"+seconds;
+				
+				document.getElementById('drtime').innerHTML = ""+hours +":"+minutes+":"+seconds+"";
+				document.getElementById('drinfo').innerHTML = "Draft starting in";
 			} else {
-				document.getElementById('drtime').innerHTML = "0:"+data;
+				
+				var hours = parseInt( data / 3600 ) % 24;
+				var minutes = parseInt( data / 60 ) % 60;
+				var seconds = data % 60;
+				
+				if (hours < 10) hours = "0"+hours;
+				if (minutes < 10) minutes = "0"+minutes;
+				if (seconds < 10) seconds = "0"+seconds;
+				document.getElementById('drinfo').innerHTML = "On the clock";
+				document.getElementById('drtime').innerHTML = ""+hours +":"+minutes+":"+seconds+"";
 			}
 		}
 	});

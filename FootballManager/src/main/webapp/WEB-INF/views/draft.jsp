@@ -62,9 +62,10 @@
 <!-- ----------- -->
 
 	<div id="page_loader">
-	   <div id="page_name_text">FANTASY DRAFT </div>  <div class="wheel" id="page_load_spinner"></div>
-	
-<div id="page_load_text">LOADING</div>
+	   <div id="page_name_text">FANTASY DRAFT </div>  
+	   <div class="wheel" id="page_load_spinner"></div>
+	   <div class="wheel2" id="page_load_spinner2"></div>
+    <div id="page_load_text">LOADING</div>
 	</div>
 <!-- -------------- -->
  <div id="testblock">
@@ -79,6 +80,7 @@
          </table>
             </div>
             
+             <div id="bl_header"> Draft History</div>
             <div id="bl_picks">
               <!-- ------PICKS------------- -->
                              <table cellspacing="0" cellpadding="0" width="100%" height="100%" id="draftPicks" >
@@ -170,8 +172,8 @@
                                 
                                 <div id="roster_loading">
                                 <div id="load_text">LOADING</div>
-                               
-                             
+                                 <div class="wheel2" id="load_spinner"></div>     
+                                 <div class="wheel" id="load_spinner2"></div>                
                                 </div>
                                 
                                 <div id="bl_roster">

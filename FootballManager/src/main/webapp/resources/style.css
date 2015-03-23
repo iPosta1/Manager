@@ -7,6 +7,11 @@
     font-family: agroman; 
     src: url(fonts/agroman.ttf); 
   }
+  
+  @font-face {
+    font-family: digits; 
+    src: url(fonts/digits.TTF); 
+  }
 
 div, p, ul, img, h1, h2, h3, h4, form{
     padding:0; margin:0;
@@ -795,20 +800,20 @@ height:100%;
     z-index: 100;
  
     -webkit-animation-name: spin;
-    -webkit-animation-duration: 2000ms;
+    -webkit-animation-duration: 1500ms;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
     -moz-animation-name: spin;
-    -moz-animation-duration: 2000ms;
+    -moz-animation-duration: 1500ms;
     -moz-animation-iteration-count: infinite;
     -moz-animation-timing-function: linear;
     -ms-animation-name: spin;
-    -ms-animation-duration: 2000ms;
+    -ms-animation-duration: 1500ms;
     -ms-animation-iteration-count: infinite;
     -ms-animation-timing-function: linear;
  
     animation-name: spin;
-    animation-duration: 2000ms;
+    animation-duration: 1500ms;
     animation-iteration-count: infinite;
     animation-timing-function: linear;
 }
@@ -832,6 +837,48 @@ height:100%;
         transform:rotate(360deg);
     }
 }
+
+.wheel2 {
+    z-index: 100;
+ 
+    -webkit-animation-name: spinleft;
+    -webkit-animation-duration: 1500ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spinleft;
+    -moz-animation-duration: 1500ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spinleft;
+    -ms-animation-duration: 1500ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+ 
+    animation-name: spinleft;
+    animation-duration: 1500ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+@-ms-keyframes spinleft {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(-360deg); }
+}
+@-moz-keyframes spinleft {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(-360deg); }
+}
+@-webkit-keyframes spinleft {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(-360deg); }
+}
+@keyframes spinleft {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(-360deg);
+    }
+}
  
  
 #page_loader {
@@ -850,8 +897,23 @@ display:block;
     height: 150px;
     text_align:center;
    left:50%;
-   top:50%;
+   top:80%;
    margin-left:-75px;
+    margin-top:-75px;
+    background:url(images/circle.png); 
+     background-size: cover; 
+     
+}
+
+#page_load_spinner2{
+    position:fixed;
+     width: 200px;
+    height: 200px;
+    text_align:center;
+   left:50%;
+   top:80%;
+   margin-left:-100px;
+    margin-top:-100px;
     background:url(images/circle.png); 
      background-size: cover; 
      
@@ -862,7 +924,7 @@ display:block;
     height: 100%;
     text-align:center;
     margin: 0 auto;
-    padding-top:15%;
+    padding-top:30%;
     
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 font-weight:bold;
@@ -875,15 +937,13 @@ text-shadow: 1px 1px 0 rgba(140,140,140,0.3) , -1px -1px 1px rgba(0,0,0,0.67) ;
 	position:fixed;
     text-align:center;
      width: 100%;
-    height: 45px;
-
-
-   top:55%;
+    height: 30px;
+   top:80%;
+   margin-top:-15px;
    z-index:100;
-   background:url(images/blackstripes.png) repeat;  
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 font-weight:bold;
-font-size:40px;
+font-size:25px;
 color: rgba(48,48,48,1);
 text-shadow: 1px 1px 0 rgba(140,140,140,0.3) , -1px -1px 1px rgba(0,0,0,0.67) ;
 
@@ -897,27 +957,52 @@ height:60%;
 position:fixed;
 z-index:100;
 background:url(images/blackstripes.png) repeat; 
-
- 
+visibility:hidden;
+opacity:1;
+transition:visibility 2s linear 0.5s,opacity 0.5s linear;
+-webkit-transition:visibility 2s linear 0.5s,opacity 0.5s linear;
+-moz-transition:visibility 2s linear 0.5s,opacity 0.5s linear;
+-o-transition:visibility 2s linear 0.5s,opacity 0.5s linear;
 }
-#load_spinner{
-     width: 70px;
-    height: 70px;
-    margin: 0 auto;
-     background:url(images/circle.png); 
+
+
+#load_spinner{  
+        position:absolute;
+     width: 150px;
+    height: 150px;
+    text_align:center;
+   left:50%;
+   top:80%;
+   margin-left:-75px;
+    margin-top:-75px;
+    background:url(images/circle.png); 
+     background-size: cover; 
+}
+#load_spinner2{  
+        position:absolute;
+     width: 100px;
+    height: 100px;
+    text_align:center;
+   left:50%;
+   top:80%;
+   margin-left:-50px;
+    margin-top:-50px;
+    background:url(images/circle.png); 
      background-size: cover; 
 }
 
 #load_text{
-     width: 250px;
-    height: 250px;
+	position:absolute;
+    width: 100%;
+    height: 20px;
     text-align:center;
     margin: 0 auto;
-    margin-top:45%;
+    top:80%;
+    margin-top:-10px;
     
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
 font-weight:bold;
-font-size:40px;
+font-size:18px;
 color: rgba(48,48,48,1);
 text-shadow: 1px 1px 0 rgba(140,140,140,0.3) , -1px -1px 1px rgba(0,0,0,0.67) ;
 
@@ -1625,13 +1710,19 @@ box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
  background:url(images/blackstripes.png) repeat;
 text-align:center;
 font-size:15px;
-padding-right:5px;
-padding-left:5px;
 color:white;
 height:100%;
 width:100%;
-
+padding-top:5px;
 cursor:pointer;
+}
+#round_header{
+ background:url(images/leftPanHead.png) repeat-x;	
+ height:20px;
+ width:100%;
+ font-family:digits;
+ color:white;
+ font-size:18px;
 }
 #drpick{
     color:#EEE9E9;
@@ -1639,7 +1730,8 @@ cursor:pointer;
 font-weight:bold;
 font-size:13px;
 text-align:left;
-
+float:left;
+position:absolute;
 }
 #onclockteam{
  padding-top:7px;
@@ -1651,13 +1743,28 @@ font-weight:bold;
 text-align:right;
 padding-right:20px;
 
-
+-webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-ms-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 
 text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) ;
 }
+
+
+#onclock_round {
+height:20px;
+width:100%;
+font-size:20px;
+
+ background:url(images/reshLine.png) repeat-x;
+ font-family:digits;
+}
+
 #onclock{
 text-align:center;
-height:90px;    
+height:100px;    
 background-image: linear-gradient(to bottom, #24963f, #056a1c); 
  width:20%;
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
@@ -1675,11 +1782,35 @@ box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
 
 }
 
+#drinfo{
+ font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+font-size:18px; 
+font-weight:bold;
+color:white;
+float:left;
+bottom:9px;
+left:5px;
+position:absolute;
+}
+
 #drtime{
-font-size:15px; 
+	font-family:digits;
+font-size:25px; 
+padding-top:9px;
+background:url(images/clock.png) repeat; 
+height:31px;
+width:100px;
+float:right;
+background-repeat:no-repeat;
+
+-webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-ms-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 }
 #testblock{
-    top:90px;
+    top:100px;
     left:0;
      position: fixed;
     height:100%;
@@ -1687,6 +1818,7 @@ font-size:15px;
 overflow-y:hidden;
 
 }
+
 
 #draftplayers{
     bottom:0;
@@ -1707,10 +1839,6 @@ width:100%;
 #drafticon{
 
 float:right;
-border-radius:5px; 
--webkit-border-radius:10px; 
--moz-border-radius:5px; 
--khtml-border-radius:10px;
 padding-left:10px;
 }
 
@@ -1728,18 +1856,21 @@ border-radius:5px;
 #drafttpanel{
  background:url(images/topLine.png) repeat-x;   
  height:40px;
+padding-top:0;
+border: grey 1px solid;
+}
+#teamround{
+background:url(images/team_round.png) repeat-x; 
+height:40px;
+width:79px;
+float:left;
 
-
--webkit-box-shadow: 0 0 3px grey;
--moz-box-shadow: 0 0 3px grey;
--ms-box-shadow: 0 0 3px grey;
--o-box-shadow: 0 0 3px grey;
-box-shadow: 0 0 3px grey;
-
-border-radius:5px; 
--webkit-border-radius:10px; 
--moz-border-radius:5px; 
--khtml-border-radius:10px;
+position:absolute;
+font-family:digits;
+color:black;
+text-shadow: 1px 1px 0 white;
+text-align:left;
+padding-top:5px;
 }
 
 #drafttpanel_online{
@@ -1747,33 +1878,9 @@ border-radius:5px;
  height:40px;
 
 
--webkit-box-shadow: 0 0 5px white;
--moz-box-shadow: 0 0 5px white;
--ms-box-shadow: 0 0 5px white;
--o-box-shadow: 0 0 5px white;
-box-shadow: 0 0 5px white;
-
-border-radius:5px; 
--webkit-border-radius:10px; 
--moz-border-radius:5px; 
--khtml-border-radius:10px;
+border: white 1px solid;
 }
 
-#drafttpanel_your{
- background:url(images/topLine.png) repeat-x;   
- height:40px;
-
--webkit-box-shadow: 0 0 5px white;
--moz-box-shadow: 0 0 5px white;
--ms-box-shadow: 0 0 5px white;
--o-box-shadow: 0 0 5px white;
-box-shadow: 0 0 5px white;
-
-border-radius:5px; 
--webkit-border-radius:10px; 
--moz-border-radius:5px; 
--khtml-border-radius:10px;
-}
 
 #drafttdata{
 
@@ -1791,7 +1898,7 @@ text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) ;
 font-weight:bold;
 text-align:right;
 padding-top:10px;
-font-size:16px;
+font-size:13px;
  color:white;
 }
 
@@ -1834,7 +1941,7 @@ background:rgba(255,255,255,0.3);
 
 #your_next_pick{
 text-align:center;
-height:100px;    
+height:80px;    
  background:url(images/blackstripes.png) repeat;
  width:20%;
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
@@ -1855,11 +1962,13 @@ box-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 
 #yourNextTitle{
 font-weight:bold;
-padding-left:5%;
 text-align:center;
-padding-top:1%;
-color:black;
+color:white;
+height:20px;
+width:100%;
+font-size:15px;
 text-shadow: 1px 1px 0 rgba(140,140,140,0.6);
+background:url(images/reshLine.png) repeat-x;
 }
 #npblock{   
  height:40px;
@@ -2109,15 +2218,43 @@ box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.8);
 }
 
 /*================================*/
+
+#draftPicks{
+	
+}
+#draftPicks tr:nth-child(even) { /*(even) or (2n 0)*/
+    background: rgba(249,247,247,0.2);
+}
+#draftPicks tr:nth-child(odd) { /*(odd) or (2n 1)*/
+    background: rgba(205,203,203,0.2);
+}
 #bl_picks{
-background:url(images/leftPan.png) repeat; 
-top:0;
+ background:url(images/blackstripes.png) repeat;   
+top:5%;
 left:20%;
-height:32%;	
+height:27%;	
 width:32%;
 position:fixed;
 overflow:auto;
 overflow-y:scroll;
+color:white;
+}
+
+#bl_header{
+ background:url(images/blackstripes.png) repeat;    
+top:0;
+left:20%;
+height:5%; 
+width:32%;
+position:fixed;
+font-weight:bold;
+font-size:22px;
+padding-top:10px;
+text-align:center;
+font-family:digits;
+color: white;
+text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.8) ;
+
 }
 #bl_roster{
 top:0;
