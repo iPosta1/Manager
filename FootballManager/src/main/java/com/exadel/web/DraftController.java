@@ -158,7 +158,7 @@ public class DraftController {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        for (int i = 120; i > -1; i--) {
+                        for (int i = 12000; i > -1; i--) {
                             // 100+ means that draft not started
                             int tm = 100 + i;
                             leaguetimer.put(leaguename, tm);

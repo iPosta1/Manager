@@ -323,7 +323,7 @@ function dropTeamFromQ() {
 var selectedRow; // Selected row in player's table
 
 /* setting players info */
-function p_info(id, firstname, lastname, photo, birthdate,
+function p_info(id, firstname, lastname, photo, birthdate,height,weight,
 		position,ovr,speed,agility,awareness,catching,carrying,
 		tackling,breakTackle,jumping,tpower,taccuracy,kpower,
 		kaccuracy,strength, row) {
@@ -333,6 +333,8 @@ function p_info(id, firstname, lastname, photo, birthdate,
 	document.getElementById('p_lastname').innerHTML = lastname;
 	document.getElementById('p_photo').innerHTML = photo;
 	document.getElementById('p_birthdate').innerHTML = birthdate;
+	document.getElementById('p_height').innerHTML = height;
+	document.getElementById('p_weight').innerHTML = weight;
 	document.getElementById('p_position').innerHTML = position;
 	document.getElementById('p_ovr').innerHTML = ovr;
 	document.getElementById('p_speed').innerHTML = speed;
@@ -491,9 +493,11 @@ function getLastPick(leaguename) {
 		success : function(data) {
 			var row = $("<tr/>");
 			$("#draftPicks tbody").prepend(row);
-			row.prepend($("<td> Round " + data.draftqueueID.round + " pick "
-					+ data.draftqueueID.pick + ": " + data.draftqueueID.team.name
-					+ " picks " + data.lpplayer.pplayer.lastname + "</td>"));
+			row.prepend($("<td><span id='pick_number'> Round " + data.draftqueueID.round + " pick "
+					+ data.draftqueueID.pick + ":</span><span id='pick_info'>player "
+					+data.lpplayer.pplayer.firstname[0]+". "+data.lpplayer.pplayer.lastname+" was drafted by "
+					+data.draftqueueID.team.name+"</span></td>"));
+			
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
 
@@ -560,6 +564,8 @@ function drawRow(rowData, i) {
 			+ JSON.stringify(rowData.pplayer.lastname) + ","
 			+ JSON.stringify(rowData.pplayer.photo) + ","
 			+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+			+ JSON.stringify(rowData.pplayer.height) + ","
+			+ JSON.stringify(rowData.pplayer.weight) + ","
 			+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
 			+ JSON.stringify(rowData.pplayer.ovr) + "," 
 			+ JSON.stringify(rowData.pplayer.speed) + ","
@@ -602,10 +608,6 @@ function drawRow(rowData, i) {
 
 	$("#draft_p_table tbody").append(row);
 	row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
-	row.append($("<td width='5%'>"
-			+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
-	row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
-	row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
 	row
 			.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
 					+ "</td>"));
@@ -2016,9 +2018,11 @@ function drawTablePicks(data) {
 function drawRowPicks(rowData, num) {
 	var row = $("<tr/>");
 	$("#draftPicks tbody").prepend(row);
-	row.prepend($("<td> Round " + rowData.draftqueueID.round + " pick "
-			+ rowData.draftqueueID.pick + ": " + rowData.draftqueueID.team.name
-			+ " picks " + rowData.lpplayer.pplayer.lastname + "</td>"));
+
+	row.prepend($("<td><span id='pick_number'> Round " + rowData.draftqueueID.round + " pick "
+			+ rowData.draftqueueID.pick + ":</span><span id='pick_info'>player "
+			+rowData.lpplayer.pplayer.firstname[0]+". "+rowData.lpplayer.pplayer.lastname+" was drafted by "
+			+rowData.draftqueueID.team.name+"</span></td>"));
 }
 /*----------------Draw picks end---------------------------*/
 
