@@ -131,7 +131,15 @@ round int not null,
 pick int not null,
 constraint fk_teamIDd foreign key (teamID) references standings(teamID) on delete cascade
 );
- 
+
+  create table footballmanager.draftpicks(
+teamID int not null,
+round int not null,
+pick int not null,
+lplayerID int,
+constraint fk_teamIDp foreign key (teamID) references standings(teamID) on delete cascade,
+constraint fk_lplayerIDf foreign key (lplayerID) references lplayers(lplayerID) on delete cascade
+);
  
   insert into users (userID,username,password,email,user_group) values (1,'primetimerivalry1','27092709','nkvtbsk1@gmail.com','bot');
   insert into users (userID,username,password,email,user_group) values (2,'primetimerivalry2','27092709','nkvtbsk2@gmail.com','bot');

@@ -1839,7 +1839,7 @@ width:100%;
 #drafticon{
 
 float:right;
-padding-left:10px;
+padding-left:5px;
 }
 
 #yourNexticon{
@@ -1873,24 +1873,9 @@ text-align:left;
 padding-top:5px;
 }
 
-#drafttpanel_online{
- background:url(images/topLine.png) repeat-x;   
- height:40px;
 
 
-border: white 1px solid;
-}
 
-
-#drafttdata{
-
- font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-font-weight:bold;
-text-align:right;
-padding-top:10px;
- color:#949494;
-text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) ;
-}
 
 #nexttdata{
 
@@ -1902,16 +1887,46 @@ font-size:13px;
  color:white;
 }
 
+#drafttdata{
 
+
+ color:#949494;
+text-shadow: 1px 1px 0 rgba(140,140,140,0.6) , -1px -1px 1px rgba(0,0,0,0.67) ;
+ font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
+font-weight:normal;
+text-align:right;
+padding-top:1px;
+font-size:11px;
+}
+#onlinestatus_y{
+    width:100%;
+    height:100%;
+  text-align:center;
+color:white;
+position:absolute;
+padding-top:23px;
+font-size:13px;
+
+}
+#onlinestatus_n{
+	width:100%;
+	height:100%;
+  text-align:center;
+color:#949494;
+position:absolute;
+padding-top:23px;
+font-size:13px;
+}
 
 #drafttdata_online{
 
     
  color:white;
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-font-weight:bold;
+font-weight:normal;
 text-align:right;
-padding-top:10px;
+padding-top:1px;
+font-size:11px;
 }
 
 #drafttdata_your{
@@ -1919,9 +1934,11 @@ padding-top:10px;
     
  color:#32CD32;
  font-family: Arial, 'Helvetica Neue', Helvetica, sans-serif;
-font-weight:bold;
+font-weight:normal;
 text-align:right;
-padding-top:10px;
+padding-top:1px;
+font-size:11px;
+
 }
 
 
@@ -2233,7 +2250,7 @@ position:fixed;
 }
 
 
-
+/*---------------*/
 #bl_info{
 top:32%;
 left:20%;
@@ -2241,10 +2258,234 @@ width:32%;
 height:28%; 
 position:fixed;
 color:white;
- background:url(images/blackstripes.png) repeat; 
+ background:url(images/leftPan.png) repeat;  
+ overflow-y:auto;
+}
+
+#player_photo{
+width:120px;
+height:140px;
+ background:url(images/blackstripes.png) repeat;     
+ background-size: cover; 
+ 
+ -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+-ms-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+-o-box-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+box-shadow: 0px 0 3px rgba(0, 0, 0, 0.8);
+
+ -webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+-ms-border-radius: 5px;
+border-radius: 5px;
+}
+#p_id{
+display:none;   
+}
+#p_name{
+font-size:14px;
+font-weight:bold;
+text-shadow: 0px 0px 1px black; /* Параметры тени */	
+text-align:center;
 }
 
 
+#p_main_info{
+height:100%;
+width:100%; 
+top:0;
+}
+
+#p_main_info table tr td{
+    
+min-width:30px;
+font-size:13px;
+font-weight:bold;
+color:#696969;
+text-align:center;
+
+
+}
+#p_main_info table tr{
+height:20px;
+ border-bottom: 1px solid #696969;
+}
+/*
+
+#p_main_info{
+
+}
+#p_main_info table tr td{
+	
+height:100%;
+width:100%;
+min-width:30px;
+font-size:13px;
+font-weight:bold;
+color:#696969;
+text-align:center;
+
+
+}
+#p_main_info table tr{
+display: table;
+height:20px;
+  border-top: 1px solid #696969;
+}
+*/
+
+
+#draft_button{
+ background:url(images/reshGrey.png) repeat-x;
+
+ width:100%;
+ height:40px;
+ color:white;
+ font-size:20px; 
+ cursor:pointer;
+ text-align:center;	
+ padding-top:20px;
+ font-weight:bold;
+ 
+ -webkit-border-radius: 15px;
+-moz-border-radius: 15px;
+-ms-border-radius: 15px;
+border-radius: 15px;
+
+ -webkit-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-ms-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+-o-box-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+box-shadow: 0px 0 6px rgba(0, 0, 0, 0.8);
+}
+#draft_button:hover{
+margin-top:2px;
+ -webkit-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-moz-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-ms-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+-o-box-shadow: 0 0 1px rgba(0, 0, 0, 0.8);
+box-shadow: 0px 0 1px rgba(0, 0, 0, 0.8);
+}
+
+#p_info_cell{
+color:black;
+font-weight:normal;
+font-size:14px;	
+text-align:center;
+font-family:digits;
+}
+
+#p_info_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+
+#p_ovr_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+
+#p_speed_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_agility_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_awareness_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_catching_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_carrying_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_tackling_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_breaktackle_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_jumping_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_throwpower_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_throwaccuracy_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_kickpower_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_kickaccuracy_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+#p_strength_td{
+background:rgba(140,140,140,0.1);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+-ms-border-radius: 10px;
+border-radius: 10px;
+}
+
+
+
+/*------------*/
 #bl_picks tbody tr{
  border-collapse: collapse; 
    width: 100%;
@@ -2388,14 +2629,7 @@ box-shadow: 0px 0 3px rgba(0, 0, 0, 0.8);
  background:url(images/blackstripes.png) repeat;    
 }
 
-#player_photo{
-width:120px;
-height:140px;
- background:url(images/leftPan.png) repeat; 	
-}
-#p_id{
-display:none;	
-}
+
 table #draftRoster{
 
 

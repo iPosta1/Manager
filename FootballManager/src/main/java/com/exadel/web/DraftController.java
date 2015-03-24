@@ -158,7 +158,7 @@ public class DraftController {
             new Thread(new Runnable() {
                 public void run() {
                     try {
-                        for (int i = 12000; i > -1; i--) {
+                        for (int i = 120; i > -1; i--) {
                             // 100+ means that draft not started
                             int tm = 100 + i;
                             leaguetimer.put(leaguename, tm);
@@ -490,6 +490,7 @@ public class DraftController {
     String draftPlayer(@RequestParam("lplayerID") int lplayerID,
             @RequestParam("username") String username, @PathVariable("leaguename") String leaguename)
             throws InterruptedException {
+        String result ="0";
         try {
             List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
             draftqueue = leaguequeue.get(leaguename);
@@ -557,13 +558,14 @@ public class DraftController {
 
                     LOG.log(Level.INFO, "Player " + player.getPplayer().getLastname()
                             + " drafted by team " + team.getName() + " ");
+                    result = "1";
 
                     nextPick(leaguename); // to next pick
                 }
 
             }
 
-            return "1";
+           
         } catch (IndexOutOfBoundsException e2) {
             LOG.log(Level.SEVERE, "Exception: ", e2);
         } catch (HibernateException e) {
@@ -571,7 +573,7 @@ public class DraftController {
         } catch (NumberFormatException e3) {
             LOG.log(Level.SEVERE, "Exception: ", e3);
         }
-        return "0";
+        return result;
     }
 
     /* ----cheching update---------- */
@@ -580,6 +582,38 @@ public class DraftController {
     int getSize(@PathVariable("leaguename") String leaguename) {
         int picks = leaguepickscount.get(leaguename);
         return picks;
+    }
+    
+    //check if user can draft
+    @RequestMapping(value = "{leaguename}/checkstatus", method = RequestMethod.POST)
+    public @ResponseBody
+    int checkStatus(@PathVariable("leaguename") String leaguename,  @RequestParam("username") String username,@RequestParam("lplayerID") int lplayerID ) {
+
+        Users user = new Users();
+        user = usersService.getUserByName(username);
+
+        Leagues league = new Leagues();
+        league = leaguesService.getLeaguebyName(leaguename);
+        
+        Teams team = new Teams();
+        team = teamsService.getTeamBy(user, league);
+        
+        List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
+        draftqueue = leaguequeue.get(leaguename);
+        
+       //Map<Integer, Lplayers> lplayers  = new LinkedHashMap<Integer, Lplayers>();
+       //lplayers = leagueplayers.get(lplayerID);
+       
+        int timeleft = leaguetimer.get(leaguename);        
+        int status = 0;
+        
+        if (draftqueue.get(0) != null) {
+            if (leagueplayers.get(leaguename).get(lplayerID)!= null && timeleft>0 && timeleft<60 && team.getName().equals(draftqueue.get(0).getDraftqueueID().getTeam().getName())){
+                status=1;  
+            }  
+        }
+ 
+        return status;
     }
 
 }
