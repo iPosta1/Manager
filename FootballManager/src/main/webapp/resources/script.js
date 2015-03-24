@@ -321,16 +321,134 @@ function dropTeamFromQ() {
 }
 
 var selectedRow; // Selected row in player's table
-
+var league;
 /* setting players info */
-function p_info(id, firstname, lastname, photo, birthdate, position, row) {
+function p_info(id, firstname, lastname, photo, birthdate,height,weight,
+		position,ovr,speed,agility,awareness,catching,carrying,
+		tackling,breakTackle,jumping,tpower,taccuracy,kpower,
+		kaccuracy,strength, leaguename) {
+	checkstatus(league);
+
+	if (ovr > 50) document.getElementById("p_ovr_td").style.background = "rgba(103,103,103,0.3)";
+	if (ovr > 70) document.getElementById("p_ovr_td").style.background = "rgba(128,195,11,0.3)";
+	if (ovr > 80) document.getElementById("p_ovr_td").style.background = "rgba(195,184,11,0.3)";
+	if (ovr > 85) document.getElementById("p_ovr_td").style.background = "rgba(195,132,11,0.3)";
+	if (ovr > 90) document.getElementById("p_ovr_td").style.background = "rgba(146,69,1,0.3)";
+	if (ovr > 95) document.getElementById("p_ovr_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (speed > 50) document.getElementById("p_speed_td").style.background = "rgba(170,170,170,0.6)";
+	if (speed > 70) document.getElementById("p_speed_td").style.background = "rgba(128,195,11,0.3)";
+	if (speed > 80) document.getElementById("p_speed_td").style.background = "rgba(195,184,11,0.3)";
+	if (speed > 85) document.getElementById("p_speed_td").style.background = "rgba(195,132,11,0.3)";
+	if (speed > 90) document.getElementById("p_speed_td").style.background = "rgba(146,69,1,0.3)";
+	if (speed > 95) document.getElementById("p_speed_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (agility > 50) document.getElementById("p_agility_td").style.background = "rgba(103,103,103,0.3)";
+	if (agility > 70) document.getElementById("p_agility_td").style.background = "rgba(128,195,11,0.3)";
+	if (agility > 80) document.getElementById("p_agility_td").style.background = "rgba(195,184,11,0.3)";
+	if (agility > 85) document.getElementById("p_agility_td").style.background = "rgba(195,132,11,0.3)";
+	if (agility > 90) document.getElementById("p_agility_td").style.background = "rgba(146,69,1,0.3)";
+	if (agility > 95) document.getElementById("p_agility_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (awareness > 50) document.getElementById("p_awareness_td").style.background = "rgba(103,103,103,0.3)";
+	if (awareness > 70) document.getElementById("p_awareness_td").style.background = "rgba(128,195,11,0.3)";
+	if (awareness > 80) document.getElementById("p_awareness_td").style.background = "rgba(195,184,11,0.3)";
+	if (awareness > 85) document.getElementById("p_awareness_td").style.background = "rgba(195,132,11,0.3)";
+	if (awareness > 90) document.getElementById("p_awareness_td").style.background = "rgba(146,69,1,0.3)";
+	if (awareness > 95) document.getElementById("p_awareness_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (catching > 50) document.getElementById("p_catching_td").style.background = "rgba(103,103,103,0.3)";
+	if (catching > 70) document.getElementById("p_catching_td").style.background = "rgba(128,195,11,0.3)";
+	if (catching > 80) document.getElementById("p_catching_td").style.background = "rgba(195,184,11,0.3)";
+	if (catching > 85) document.getElementById("p_catching_td").style.background = "rgba(195,132,11,0.3)";
+	if (catching > 90) document.getElementById("p_catching_td").style.background = "rgba(146,69,1,0.3)";
+	if (catching > 95) document.getElementById("p_catching_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (carrying > 50) document.getElementById("p_carrying_td").style.background = "rgba(103,103,103,0.3)";
+	if (carrying > 70) document.getElementById("p_carrying_td").style.background = "rgba(128,195,11,0.3)";
+	if (carrying > 80) document.getElementById("p_carrying_td").style.background = "rgba(195,184,11,0.3)";
+	if (carrying > 85) document.getElementById("p_carrying_td").style.background = "rgba(195,132,11,0.3)";
+	if (carrying > 90) document.getElementById("p_carrying_td").style.background = "rgba(146,69,1,0.3)";
+	if (carrying > 95) document.getElementById("p_carrying_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (tackling > 50) document.getElementById("p_tackling_td").style.background = "rgba(103,103,103,0.3)";
+	if (tackling > 70) document.getElementById("p_tackling_td").style.background = "rgba(128,195,11,0.3)";
+	if (tackling > 80) document.getElementById("p_tackling_td").style.background = "rgba(195,184,11,0.3)";
+	if (tackling > 85) document.getElementById("p_tackling_td").style.background = "rgba(195,132,11,0.3)";
+	if (tackling > 90) document.getElementById("p_tackling_td").style.background = "rgba(146,69,1,0.3)";
+	if (tackling > 95) document.getElementById("p_tackling_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (breakTackle > 50) document.getElementById("p_breaktackle_td").style.background = "rgba(103,103,103,0.3)";
+	if (breakTackle > 70) document.getElementById("p_breaktackle_td").style.background = "rgba(128,195,11,0.3)";
+	if (breakTackle > 80) document.getElementById("p_breaktackle_td").style.background = "rgba(195,184,11,0.3)";
+	if (breakTackle > 85) document.getElementById("p_breaktackle_td").style.background = "rgba(195,132,11,0.3)";
+	if (breakTackle > 90) document.getElementById("p_breaktackle_td").style.background = "rgba(146,69,1,0.3)";
+	if (breakTackle > 95) document.getElementById("p_breaktackle_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (jumping > 50) document.getElementById("p_jumping_td").style.background = "rgba(103,103,103,0.3)";
+	if (jumping > 70) document.getElementById("p_jumping_td").style.background = "rgba(128,195,11,0.3)";
+	if (jumping > 80) document.getElementById("p_jumping_td").style.background = "rgba(195,184,11,0.3)";
+	if (jumping > 85) document.getElementById("p_jumping_td").style.background = "rgba(195,132,11,0.3)";
+	if (jumping > 90) document.getElementById("p_jumping_td").style.background = "rgba(146,69,1,0.3)";
+	if (jumping > 95) document.getElementById("p_jumping_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (tpower > 50) document.getElementById("p_throwpower_td").style.background = "rgba(103,103,103,0.3)";
+	if (tpower > 70) document.getElementById("p_throwpower_td").style.background = "rgba(128,195,11,0.3)";
+	if (tpower > 80) document.getElementById("p_throwpower_td").style.background = "rgba(195,184,11,0.3)";
+	if (tpower > 85) document.getElementById("p_throwpower_td").style.background = "rgba(195,132,11,0.3)";
+	if (tpower > 90) document.getElementById("p_throwpower_td").style.background = "rgba(146,69,1,0.3)";
+	if (tpower > 95) document.getElementById("p_throwpower_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (taccuracy > 50) document.getElementById("p_throwaccuracy_td").style.background = "rgba(103,103,103,0.3)";
+	if (taccuracy > 70) document.getElementById("p_throwaccuracy_td").style.background = "rgba(128,195,11,0.3)";
+	if (taccuracy > 80) document.getElementById("p_throwaccuracy_td").style.background = "rgba(195,184,11,0.3)";
+	if (taccuracy > 85) document.getElementById("p_throwaccuracy_td").style.background = "rgba(195,132,11,0.3)";
+	if (taccuracy > 90) document.getElementById("p_throwaccuracy_td").style.background = "rgba(146,69,1,0.3)";
+	if (taccuracy > 95) document.getElementById("p_throwaccuracy_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (kpower > 50) document.getElementById("p_kickpower_td").style.background = "rgba(103,103,103,0.3)";
+	if (kpower > 70) document.getElementById("p_kickpower_td").style.background = "rgba(128,195,11,0.3)";
+	if (kpower > 80) document.getElementById("p_kickpower_td").style.background = "rgba(195,184,11,0.3)";
+	if (kpower > 85) document.getElementById("p_kickpower_td").style.background = "rgba(195,132,11,0.3)";
+	if (kpower > 90) document.getElementById("p_kickpower_td").style.background = "rgba(146,69,1,0.3)";
+	if (kpower > 95) document.getElementById("p_kickpower_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (kaccuracy > 50) document.getElementById("p_kickaccuracy_td").style.background = "rgba(103,103,103,0.3)";
+	if (kaccuracy > 70) document.getElementById("p_kickaccuracy_td").style.background = "rgba(128,195,11,0.3)";
+	if (kaccuracy > 80) document.getElementById("p_kickaccuracy_td").style.background = "rgba(195,184,11,0.3)";
+	if (kaccuracy > 85) document.getElementById("p_kickaccuracy_td").style.background = "rgba(195,132,11,0.3)";
+	if (kaccuracy > 90) document.getElementById("p_kickaccuracy_td").style.background = "rgba(146,69,1,0.3)";
+	if (kaccuracy > 95) document.getElementById("p_kickaccuracy_td").style.background = "rgba(146,1,1,0.3)";
+	
+	if (strength > 50) document.getElementById("p_strength_td").style.background = "rgba(103,103,103,0.3)";
+	if (strength > 70) document.getElementById("p_strength_td").style.background = "rgba(128,195,11,0.3)";
+	if (strength > 80) document.getElementById("p_strength_td").style.background = "rgba(195,184,11,0.3)";
+	if (strength > 85) document.getElementById("p_strength_td").style.background = "rgba(195,132,11,0.3)";
+	if (strength > 90) document.getElementById("p_strength_td").style.background = "rgba(146,69,1,0.3)";
+	if (strength > 95) document.getElementById("p_strength_td").style.background = "rgba(146,1,1,0.3)";
 
 	document.getElementById('p_id').innerHTML = id;
 	document.getElementById('p_firstname').innerHTML = firstname;
 	document.getElementById('p_lastname').innerHTML = lastname;
 	document.getElementById('p_photo').innerHTML = photo;
 	document.getElementById('p_birthdate').innerHTML = birthdate;
+	document.getElementById('p_height').innerHTML = height;
+	document.getElementById('p_weight').innerHTML = weight;
 	document.getElementById('p_position').innerHTML = position;
+	document.getElementById('p_ovr').innerHTML = ovr;
+	document.getElementById('p_speed').innerHTML = speed;
+	document.getElementById('p_agility').innerHTML = agility;
+	document.getElementById('p_awareness').innerHTML = awareness;
+	document.getElementById('p_catching').innerHTML = catching;
+	document.getElementById('p_carrying').innerHTML = carrying;
+	document.getElementById('p_tackling').innerHTML = tackling;
+	document.getElementById('p_breaktackle').innerHTML = breakTackle;
+	document.getElementById('p_jumping').innerHTML = jumping;
+	document.getElementById('p_throwpower').innerHTML = tpower;
+	document.getElementById('p_throwaccuracy').innerHTML = taccuracy;
+	document.getElementById('p_kickpower').innerHTML = kpower;
+	document.getElementById('p_kickaccuracy').innerHTML = kaccuracy;
+	document.getElementById('p_strength').innerHTML = strength;
 
 	selectedRow = row; // get selected row
 }
@@ -368,6 +486,7 @@ function draftPlayer(username, leaguename) {
 }
 
 function getPlayers(leaguename) {
+	document.getElementById("page_loader").style.display = "block";
 	$.ajax({
 		type : 'get',
 		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
@@ -378,7 +497,7 @@ function getPlayers(leaguename) {
 		success : function(data) {
 			//alert(JSON.stringify(data));
 			drawTable(data);
-			
+			document.getElementById("page_loader").style.display = "none";
 
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
@@ -393,6 +512,8 @@ var principalName; // principal's name
 
 
 function getRosterTeam(leaguename,user) {
+	document.getElementById("roster_loading").style.visibility = "visible";
+	document.getElementById("roster_loading").style.opacity = "1"; 
 	$.ajax({
 		type : 'get',
 		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
@@ -405,7 +526,8 @@ function getRosterTeam(leaguename,user) {
 		},
 		success : function(data) {
 			drawRoster(data);
-
+				document.getElementById("roster_loading").style.visibility = "hidden";   
+				document.getElementById("roster_loading").style.opacity = "0"; 
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
 
@@ -469,10 +591,12 @@ function getLastPick(leaguename) {
 		cache : false,
 		success : function(data) {
 			var row = $("<tr/>");
-			$("#draftPicks").prepend(row);
-			row.prepend($("<td> Round " + data.draftqueueID.round + " pick "
-					+ data.draftqueueID.pick + ": " + data.draftqueueID.team.name
-					+ " picks " + data.lpplayer.pplayer.lastname + "</td>"));
+			$("#draftPicks tbody").prepend(row);
+			row.prepend($("<td><span id='pick_number'> Round " + data.draftqueueID.round + " pick "
+					+ data.draftqueueID.pick + ":</span><span id='pick_info'>player "
+					+data.lpplayer.pplayer.firstname[0]+". "+data.lpplayer.pplayer.lastname+" was drafted by "
+					+data.draftqueueID.team.name+"</span></td>"));
+			
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
 
@@ -491,34 +615,97 @@ function getAge(date) {
 function drawTable(data) {
 
 	$("#draft_p_table tbody tr").remove();
+	$("#draft_p_table_QB tbody tr").remove();
+	$("#draft_p_table_RB tbody tr").remove();
+	$("#draft_p_table_WR tbody tr").remove();
+	$("#draft_p_table_DE tbody tr").remove();
+	$("#draft_p_table_CB tbody tr").remove();
+	$("#draft_p_table_DT tbody tr").remove();
+	$("#draft_p_table_OT tbody tr").remove();
+	$("#draft_p_table_TE tbody tr").remove();
+	$("#draft_p_table_P tbody tr").remove();
+	$("#draft_p_table_K tbody tr").remove();
+	$("#draft_p_table_C tbody tr").remove();
+	$("#draft_p_table_OG tbody tr").remove();
+	$("#draft_p_table_FB tbody tr").remove();
+	$("#draft_p_table_FS tbody tr").remove();
+	$("#draft_p_table_SS tbody tr").remove();
+	$("#draft_p_table_MLB tbody tr").remove();
+	$("#draft_p_table_OLB tbody tr").remove();
 	for (var i=0 in data) {
 		drawRow(data[i], i);
 	}
+	 $("#draft_p_table").tablesorter();
+	 $("#draft_p_table_QB").tablesorter();
+	 $("#draft_p_table_RB").tablesorter();
+	 $("#draft_p_table_WR").tablesorter();
+	 $("#draft_p_table_DE").tablesorter();
+	 $("#draft_p_table_CB").tablesorter();
+	 $("#draft_p_table_DT").tablesorter();
+	 $("#draft_p_table_OT").tablesorter();
+	 $("#draft_p_table_TE").tablesorter();
+	 $("#draft_p_table_P").tablesorter();
+	 $("#draft_p_table_K").tablesorter();
+	 $("#draft_p_table_C").tablesorter();
+	 $("#draft_p_table_OG").tablesorter();
+	 $("#draft_p_table_FB").tablesorter();
+	 $("#draft_p_table_FS").tablesorter();
+	 $("#draft_p_table_SS").tablesorter();
+	 $("#draft_p_table_MLB").tablesorter();
+	 $("#draft_p_table_OLB").tablesorter();
 }
 
 function drawRow(rowData, i) {
-	
-	
-	var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+
+	 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
 			+ JSON.stringify(rowData.pplayer.firstname) + ","
 			+ JSON.stringify(rowData.pplayer.lastname) + ","
 			+ JSON.stringify(rowData.pplayer.photo) + ","
 			+ getAge(new Date(rowData.pplayer.birthdate)) + ","
-			+ JSON.stringify(rowData.pplayer.defaultPosition) + ")'/>");
+			+ JSON.stringify(rowData.pplayer.height) + ","
+			+ JSON.stringify(rowData.pplayer.weight) + ","
+			+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+			+ JSON.stringify(rowData.pplayer.ovr) + "," 
+			+ JSON.stringify(rowData.pplayer.speed) + ","
+			+ JSON.stringify(rowData.pplayer.agility) + ","
+			+ JSON.stringify(rowData.pplayer.awareness) + ","
+			+ JSON.stringify(rowData.pplayer.catching) + ","
+			+ JSON.stringify(rowData.pplayer.carrying) + ","
+			+ JSON.stringify(rowData.pplayer.tackling) + ","
+			+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+			+ JSON.stringify(rowData.pplayer.jumping) + ","
+			+ JSON.stringify(rowData.pplayer.throwPower) + ","
+			+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+			+ JSON.stringify(rowData.pplayer.kickPower) + ","
+			+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+			+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
 
 	$(row).click(function() {
 		var selected = $(this).hasClass("highlight");
 		$("#draft_p_table tbody tr").removeClass("highlight");
+		$("#draft_p_table_QB tbody tr").removeClass("highlight");
+		$("#draft_p_table_RB tbody tr").removeClass("highlight");
+		$("#draft_p_table_WR tbody tr").removeClass("highlight");
+		$("#draft_p_table_DE tbody tr").removeClass("highlight");
+		$("#draft_p_table_CB tbody tr").removeClass("highlight");
+		$("#draft_p_table_DT tbody tr").removeClass("highlight");
+		$("#draft_p_table_OT tbody tr").removeClass("highlight");
+		$("#draft_p_table_TE tbody tr").removeClass("highlight");
+		$("#draft_p_table_P tbody tr").removeClass("highlight");
+		$("#draft_p_table_K tbody tr").removeClass("highlight");	
+		$("#draft_p_table_C tbody tr").removeClass("highlight");
+		$("#draft_p_table_OG tbody tr").removeClass("highlight");
+		$("#draft_p_table_FB tbody tr").removeClass("highlight");
+		$("#draft_p_table_FS tbody tr").removeClass("highlight");
+		$("#draft_p_table_SS tbody tr").removeClass("highlight");
+		$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+		$("#draft_p_table_OLB tbody tr").removeClass("highlight");
 		if (!selected)
 			$(this).addClass("highlight");
 	});
 
 	$("#draft_p_table tbody").append(row);
 	row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
-	row.append($("<td width='5%'>"
-			+ getAge(new Date(rowData.pplayer.birthdate)) + "</td>"));
-	row.append($("<td width='5%'>" + rowData.pplayer.height + "</td>"));
-	row.append($("<td width='5%'>" + rowData.pplayer.weight + "</td>"));
 	row
 			.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
 					+ "</td>"));
@@ -536,6 +723,1122 @@ function drawRow(rowData, i) {
 	row.append($("<td width='5%'>" + rowData.pplayer.kickPower + "</td>"));
 	row.append($("<td width='5%'>" + rowData.pplayer.kickAccuracy + "</td>"));
 	row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>"));
+	
+	
+	if (rowData.pplayer.defaultPosition == "QB"){
+
+		
+		 var rowQB = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(rowQB).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_QB tbody").append(rowQB);
+		rowQB.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.throwPower + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.throwAccuracy + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		rowQB.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "RB"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_RB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "DE"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_DE tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "WR"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_WR tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "CB"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_CB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "OT"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_OT tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+	
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "MLB"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_MLB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "OLB"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_OLB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "SS"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_SS tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "FS"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_FS tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "OG"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_OG tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "DT"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_DT tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "TE"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_TE tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "C"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_C tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "FB"){
+		
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_FB tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.jumping + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "K"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_K tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.kickPower + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.kickAccuracy + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.throwPower + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.throwAccuracy + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	if (rowData.pplayer.defaultPosition == "P"){
+
+		 var row = $("<tr id='"+rowData.lplayerID+"' onclick='p_info(" + rowData.lplayerID + ","
+					+ JSON.stringify(rowData.pplayer.firstname) + ","
+					+ JSON.stringify(rowData.pplayer.lastname) + ","
+					+ JSON.stringify(rowData.pplayer.photo) + ","
+					+ getAge(new Date(rowData.pplayer.birthdate)) + ","
+					+ JSON.stringify(rowData.pplayer.height) + ","
+					+ JSON.stringify(rowData.pplayer.weight) + ","
+					+ JSON.stringify(rowData.pplayer.defaultPosition) + ","
+					+ JSON.stringify(rowData.pplayer.ovr) + "," 
+					+ JSON.stringify(rowData.pplayer.speed) + ","
+					+ JSON.stringify(rowData.pplayer.agility) + ","
+					+ JSON.stringify(rowData.pplayer.awareness) + ","
+					+ JSON.stringify(rowData.pplayer.catching) + ","
+					+ JSON.stringify(rowData.pplayer.carrying) + ","
+					+ JSON.stringify(rowData.pplayer.tackling) + ","
+					+ JSON.stringify(rowData.pplayer.breakTackle) + ","
+					+ JSON.stringify(rowData.pplayer.jumping) + ","
+					+ JSON.stringify(rowData.pplayer.throwPower) + ","
+					+ JSON.stringify(rowData.pplayer.throwAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.kickPower) + ","
+					+ JSON.stringify(rowData.pplayer.kickAccuracy) + ","
+					+ JSON.stringify(rowData.pplayer.strength) + " )'/>");
+
+		$(row).click(function() {
+			var selected = $(this).hasClass("highlight");
+			$("#draft_p_table tbody tr").removeClass("highlight");
+			$("#draft_p_table_QB tbody tr").removeClass("highlight");
+			$("#draft_p_table_RB tbody tr").removeClass("highlight");
+			$("#draft_p_table_WR tbody tr").removeClass("highlight");
+			$("#draft_p_table_DE tbody tr").removeClass("highlight");
+			$("#draft_p_table_CB tbody tr").removeClass("highlight");
+			$("#draft_p_table_DT tbody tr").removeClass("highlight");
+			$("#draft_p_table_OT tbody tr").removeClass("highlight");
+			$("#draft_p_table_TE tbody tr").removeClass("highlight");
+			$("#draft_p_table_P tbody tr").removeClass("highlight");
+			$("#draft_p_table_K tbody tr").removeClass("highlight");	
+			$("#draft_p_table_C tbody tr").removeClass("highlight");
+			$("#draft_p_table_OG tbody tr").removeClass("highlight");
+			$("#draft_p_table_FB tbody tr").removeClass("highlight");
+			$("#draft_p_table_FS tbody tr").removeClass("highlight");
+			$("#draft_p_table_SS tbody tr").removeClass("highlight");
+			$("#draft_p_table_MLB tbody tr").removeClass("highlight");
+			$("#draft_p_table_OLB tbody tr").removeClass("highlight");
+			if (!selected)
+				$(this).addClass("highlight");
+		});
+		$("#draft_p_table_P tbody").append(row);
+		row.append($("<td width='15%'>" + rowData.pplayer.firstname +" "+ rowData.pplayer.lastname + "</td>"));
+
+		row.append($("<td width='5%'>" + rowData.pplayer.defaultPosition
+						+ "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.ovr + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.kickPower + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.kickAccuracy + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.throwPower + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.throwAccuracy + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.speed + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.agility + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.awareness + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.catching + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.carrying + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.tackling + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.breakTackle + "</td>"));
+		row.append($("<td width='5%'>" + rowData.pplayer.strength + "</td>")); 
+	}
+	
+	
 
 }
 /*----------------Draw table for players end---------------------------*/
@@ -546,39 +1849,45 @@ function drawTableQueue(data,leaguename) {
 	$("#draftTeams tr").remove();
 	
 
-	for (var i = data.length -1; i > -1 ; i--) {
+	for (var i = data.length-1; i > -1 ; i--) {
 
 		
 		if (data[i].draftqueueID.team.uuser.username == principalName) {
 			
-			var image;
-			image = "<img id='drafticon' src='data:image/png;base64,"+data[i].draftqueueID.team.teamlogo+" '/>";
-			
-			$("#yourNext tr").remove();
-			var username = data[i].draftqueueID.team.uuser.username;
-			var row1 = $("<tr><td><div id='yourNextTitle'>Your Team</div><div id='npblock'>"+image+"<div id='nexttdata'>" + data[i].draftqueueID.team.name
-					+ "</div></div></td></tr>").click(function() {getRosterTeam(leaguename,username);});;
-			$("#yourNext").append(row1);
-			
-			var row2 = $("<tr><td><div id='yourNextTitle'>Next pick: Round "+data[i].draftqueueID.round+" Pick "+data[i].draftqueueID.pick+"</div><td></tr>");
-			$("#yourNext").append(row2);
+				var image;
+				image = "<img id='drafticon' src='data:image/png;base64,"+data[i].draftqueueID.team.teamlogo+" '/>";
+				
+				$("#yourNext tr").remove();
+				var username = data[i].draftqueueID.team.uuser.username;
+				var row1 = $("<tr><td><div id='yourNextTitle'>Your Team</div><div id='npblock'>"+image+"<div id='nexttdata'>" + data[i].draftqueueID.team.name
+						+ "</div></div></td></tr>").click(function() {
+							document.getElementById('rosterName').innerHTML = document.getElementById('npblock').innerHTML;
+							getRosterTeam(leaguename,username);});;
+				$("#yourNext").append(row1);
+				
+				var row2 = $("<tr><td><div id='yourNextTitle'>Next pick: Round "+data[i].draftqueueID.round+" Pick "+data[i].draftqueueID.pick+"</div><td></tr>");
+				$("#yourNext").append(row2);
 			
 
-			
 		}
 	
-		if (i < 20) drawRowQueue(data[i], i,leaguename);
+		if (i < 25) drawRowQueue(data[i], i,leaguename);
 		
 	}
 }
-
+var round=0;
 function drawRowQueue(rowData, num,league) {
 	//console.log("<tr onclick='getRosterTeam("+league+","+rowData.draftqueueID.team.uuser.username+")' />");
 
-	var row = $("<tr/>").click(function() {getRosterTeam(league,rowData.draftqueueID.team.uuser.username);});
+	var row = $("<tr/>").click(function() {
+		document.getElementById('rosterName').innerHTML = "<div id='npblock'><img id='drafticon' src='data:image/png;base64,"+rowData.draftqueueID.team.teamlogo+" '/><div id='nexttdata'>" + rowData.draftqueueID.team.name+ "</div>";
+		
+		
+		getRosterTeam(league,rowData.draftqueueID.team.uuser.username);
+		});
 
   
-	$("#draftTeams").prepend(row);
+	
 	//row.click(getRosterTeam(league,rowData.draftqueueID.team.uuser.username));
 	
 	
@@ -587,49 +1896,64 @@ function drawRowQueue(rowData, num,league) {
 	
 	 
 	if (num == 0) {
+		$("#draftTeams").prepend(row);
 		if (principalName == rowData.draftqueueID.team.uuser.username) {		
-			row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
+			
+			row.prepend($("<td><div id='onclock'><div id='drinfo'></div><div id='onclock_round'>Round " + rowData.draftqueueID.round
 					+" pick "+rowData.draftqueueID.pick
-					+ "<div id='drafttpanel_your'>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
+					+ "</div><div id='drafttpanel'><div id='onlinestatus_y'>online</div>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
 					+ "</div></div><div id='drtime'></div></div></td>"));
 		} else {
 			if (rowData.isOnline ==1) {
-				row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
+				
+				row.prepend($("<td><div id='onclock'><div id='drinfo'></div><div id='onclock_round'>Round " + rowData.draftqueueID.round
 						+" pick "+rowData.draftqueueID.pick
-						+ "<div id='drafttpanel_online'>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
+						+ "</div><div id='drafttpanel'><div id='onlinestatus_y'>online</div>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
 						+ "</div></div><div id='drtime'></div></div></td>"));
+				
 			}else {
-				row.prepend($("<td><div id='onclock'>Round " + rowData.draftqueueID.round
+				row.prepend($("<td><div id='onclock'><div id='drinfo'></div><div id='onclock_round'>Round " + rowData.draftqueueID.round
 						+" pick "+rowData.draftqueueID.pick
-						+ "<div id='drafttpanel_online'>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
+						+ "</div><div id='drafttpanel'><div id='onlinestatus_n'>offline</div>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
 						+ "</div></div><div id='drtime'></div></div></td>"));
 			}
 		}
 	} else {
-
+		
+		
+		if (round != rowData.draftqueueID.round){
+			var newrow = $("<tr/>");
+		$("#draftTeams").prepend(newrow);
+		newrow.prepend($("<td><div id='round_header'>Round "+(rowData.draftqueueID.round+1)+"</div></td>"));
+		}
+		
+		$("#draftTeams").prepend(row);
+		
 		if (principalName == rowData.draftqueueID.team.uuser.username) {
-			row.prepend($("<td><div id='drpick'>Round " + rowData.draftqueueID.round
+			
+			row.prepend($("<td><div id='drafttpanel'><div id='onlinestatus_y'>online</div><div id='teamround'>Round " + rowData.draftqueueID.round
 					+" pick "+rowData.draftqueueID.pick
-					+ "</div><div id='drafttpanel_your'>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
+					+ "</div>"+image+"<div id='drafttdata_your'>" + rowData.draftqueueID.team.name
 					+ "</div></div></td>"));
 		} else {
 				if (rowData.isOnline ==1) {
-					row.prepend($("<td><div id='drpick'>Round " + rowData.draftqueueID.round
+					
+					row.prepend($("<td><div id='drafttpanel'><div id='onlinestatus_y'>online</div><div id='teamround'>Round " + rowData.draftqueueID.round
 							+" pick "+rowData.draftqueueID.pick
-							+ "</div><div id='drafttpanel_online'>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
+							+ "</div>"+image+"<div id='drafttdata_online'>" + rowData.draftqueueID.team.name
 							+ "</div></div></td>"));
 				} else {
 	            
-					row.prepend($("<td><div id='drpick'>Round " + rowData.draftqueueID.round
+					row.prepend($("<td><div id='drafttpanel'><div id='onlinestatus_n'>offline</div><div id='teamround'>Round " + rowData.draftqueueID.round
 					+" pick "+rowData.draftqueueID.pick
-					+ "</div><div id='drafttpanel'>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
+					+ "</div>"+image+"<div id='drafttdata'>" + rowData.draftqueueID.team.name
 					+ "</div></div></td>"));
 					
 					
 				}
 		}
 	}
-	
+	round = rowData.draftqueueID.round;
 
 }
 				/* var img = $("<img />");
@@ -642,7 +1966,8 @@ function drawRowQueue(rowData, num,league) {
 
 /*----------------Draw roster for user---------------------------*/
 function drawRoster(data) {
-
+	//document.getElementById('rosterName').innerHTML = data[0].draftqueueID.team.name + "<img id='drafticon' src='data:image/png;base64,"+data[0].draftqueueID.team.teamlogo+" '/>";
+	
 	$("#draftRosterQB tbody tr").remove();
 	$("#draftRosterWR tbody tr").remove();
 	$("#draftRosterRB tbody tr").remove();
@@ -653,12 +1978,49 @@ function drawRoster(data) {
 	$("#draftRosterOT tbody tr").remove();
 	$("#draftRosterDE tbody tr").remove();
 	$("#draftRosterDT tbody tr").remove();
-	$("#draftRosterLB tbody tr").remove();
+	$("#draftRosterMLB tbody tr").remove();
+	$("#draftRosterOLB tbody tr").remove();
 	$("#draftRosterCB tbody tr").remove();
 	$("#draftRosterFS tbody tr").remove();
 	$("#draftRosterSS tbody tr").remove();
 	$("#draftRosterK tbody tr").remove();
 	$("#draftRosterP tbody tr").remove();
+	
+	$("#draftRosterQB thead tr td").html("QB (0/2)");
+	$("#draftRosterWR thead tr td").html("WR (0/4)");
+	$("#draftRosterRB thead tr td").html("RB (0/2)");
+	$("#draftRosterTE thead tr td").html("TE (0/2)");
+	$("#draftRosterFB thead tr td").html("FB (0/1)");
+	$("#draftRosterC thead tr td").html("C (0/2)");
+	$("#draftRosterOG thead tr td").html("OG (0/4)");
+	$("#draftRosterOT thead tr td").html("OT (0/4)");
+	$("#draftRosterDE thead tr td").html("DE (0/4)");
+	$("#draftRosterDT thead tr td").html("DT (0/4)");
+	$("#draftRosterMLB thead tr td").html("MLB (0/2)");
+	$("#draftRosterOLB thead tr td").html("OLB (0/4)");
+	$("#draftRosterCB thead tr td").html("CB (0/4)");
+	$("#draftRosterFS thead tr td").html("FS (0/2)");
+	$("#draftRosterSS thead tr td").html("SS (0/2)");
+	$("#draftRosterK thead tr td").html("K (0/1)");
+	$("#draftRosterP thead tr td").html("P (0/1)");
+	
+	$("#draftRosterQB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterWR thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterRB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterTE thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterFB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterC thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterOG thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterOT thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterDE thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterDT thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterMLB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterOLB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterCB thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterFS thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterSS thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterK thead tr").attr("id","rosterNonePlayers");
+	$("#draftRosterP thead tr").attr("id","rosterNonePlayers");
 
 	for (var i = 0; i < data.length; i++) {
 		drawRosterRows(data[i], i + 1);
@@ -667,94 +2029,301 @@ function drawRoster(data) {
 
 function drawRosterRows(rowData, num) {
 
-	var row = $("<tr/>");
+	var row = $("<tr id ='rosterPlayers'/>");
 
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "QB") {
 		$("#draftRosterQB").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>"+ rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " + rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterQB thead tr").remove();
+		var rowlength = $('#draftRosterQB tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> QB ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> QB ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td > QB ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterQB thead").append(header);
+		
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "WR") {
-		$("#draftRosterWR").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		$("#draftRosterWR tbody").append(row);
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterWR thead tr").remove();
+		var rowlength = $('#draftRosterWR tbody tr').length;
+		var header;
+		if (rowlength > 3 && rowlength <6) {
+			header = $("<tr id='rosterDonePlayers'><td> WR ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> WR ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> WR ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterWR thead").append(header);
+		
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "RB") {
 		$("#draftRosterRB").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterRB thead tr").remove();
+		var rowlength = $('#draftRosterRB tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> RB ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> RB ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> RB ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterRB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "TE") {
 		$("#draftRosterTE").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterTE thead tr").remove();
+		var rowlength = $('#draftRosterTE tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> TE ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> TE ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> TE ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterTE thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "FB") {
 		$("#draftRosterFB").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterFB thead tr").remove();
+		var rowlength = $('#draftRosterFB tbody tr').length;
+		var header;
+		if (rowlength == 2) {
+			header = $("<tr id='rosterFullPlayers'><td> FB ("+rowlength+"/1)</tr></td>");
+		} else if (rowlength == 1) {
+			header = $("<tr id='rosterDonePlayers'><td> FB ("+rowlength+"/1)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> FB ("+rowlength+"/1)</tr></td>");
+		} 
+		$("#draftRosterFB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "C") {
 		$("#draftRosterC").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterC thead tr").remove();
+		var rowlength = $('#draftRosterC tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> C ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> C ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> C ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterC thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "OT") {
-		$("#draftRosterOT").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+	$("#draftRosterOT").append(row);
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterOT thead tr").remove();
+		var rowlength = $('#draftRosterOT tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> OT ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> OT ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> OT ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterOT thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "OG") {
 		$("#draftRosterOG").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterOG thead tr").remove();
+		var rowlength = $('#draftRosterOG tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> OG ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> OG ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> OG ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterOG thead").append(header);
 	}
 
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "MLB") {
 		$("#draftRosterMLB").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterMLB thead tr").remove();
+		var rowlength = $('#draftRosterMLB tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> MLB ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> MLB ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> MLB ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterMLB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "OLB") {
 		$("#draftRosterOLB").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterOLB thead tr").remove();
+		var rowlength = $('#draftRosterOLB tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> OLB ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> OLB ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> OLB ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterOLB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "CB") {
 		$("#draftRosterCB").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterCB thead tr").remove();
+		var rowlength = $('#draftRosterCB tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> CB ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> CB ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> CB ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterCB thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "FS") {
 		$("#draftRosterFS").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterFS thead tr").remove();
+		var rowlength = $('#draftRosterFS tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> FS ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> FS ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> FS ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterFS thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "SS") {
+		
 		$("#draftRosterSS").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterSS thead tr").remove();
+		var rowlength = $('#draftRosterSS tbody tr').length;
+		var header;
+		if (rowlength == 3) {
+			header = $("<tr id='rosterFullPlayers'><td> SS ("+rowlength+"/2)</tr></td>");
+		} else if (rowlength == 2) {
+			header = $("<tr id='rosterDonePlayers'><td> SS ("+rowlength+"/2)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> SS ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterSS thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "DE") {
 		$("#draftRosterDE").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterDE thead tr").remove();
+		var rowlength = $('#draftRosterDE tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> DE ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> DE ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> DE ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterDE thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "DT") {
 		$("#draftRosterDT").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterDT thead tr").remove();
+		var rowlength = $('#draftRosterDT tbody tr').length;
+		var header;
+		if (rowlength == 6) {
+			header = $("<tr id='rosterFullPlayers'><td> DT ("+rowlength+"/4)</tr></td>");
+		} else if (rowlength > 3 && rowlength < 6) {
+			header = $("<tr id='rosterDonePlayers'><td> DT ("+rowlength+"/4)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> DT ("+rowlength+"/4)</tr></td>");
+		}
+		$("#draftRosterDT thead").append(header);
 	}
 
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "K") {
 		$("#draftRosterK").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterK thead tr").remove();
+		var rowlength = $('#draftRosterK tbody tr').length;
+		var header;
+		if (rowlength == 2) {
+			header = $("<tr id='rosterFullPlayers'><td> K ("+rowlength+"/1)</tr></td>");
+		} else if (rowlength == 1) {
+			header = $("<tr id='rosterDonePlayers'><td> K ("+rowlength+"/1)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> K ("+rowlength+"/1)</tr></td>");
+		}
+		$("#draftRosterK thead").append(header);
 	}
 	if (rowData.rosterID.lplayer.pplayer.defaultPosition == "P") {
 		$("#draftRosterP").append(row);
-		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.lastname
+		row.append($("<td>" + rowData.rosterID.lplayer.pplayer.firstname[0]+ ". " +rowData.rosterID.lplayer.pplayer.lastname
 				+ "</td>"));
+		
+		$("#draftRosterP thead tr").remove();
+		var rowlength = $('#draftRosterP tbody tr').length;
+		var header;
+		if (rowlength == 2) {
+			header = $("<tr id='rosterFullPlayers'><td> P ("+rowlength+"/1)</tr></td>");
+		} else if (rowlength == 1) {
+			header = $("<tr id='rosterDonePlayers'><td> P ("+rowlength+"/1)</tr></td>");
+		} else {
+			header = $("<tr id='rosterNonePlayers'><td> P ("+rowlength+"/2)</tr></td>");
+		}
+		$("#draftRosterP thead").append(header);
 	}
 
 }
@@ -762,17 +2331,19 @@ function drawRosterRows(rowData, num) {
 
 /*----------------Draw picks---------------------------*/
 function drawTablePicks(data) {
-	$("#draftPicks tr").remove();
+	$("#draftPicks tbody tr").remove();
 	for (var i = 0; i < data.length; i++) {
 		drawRowPicks(data[i], i + 1);
 	}
 }
 function drawRowPicks(rowData, num) {
 	var row = $("<tr/>");
-	$("#draftPicks").prepend(row);
-	row.prepend($("<td> Round " + rowData.draftqueueID.round + " pick "
-			+ rowData.draftqueueID.pick + ": " + rowData.draftqueueID.team.name
-			+ " picks " + rowData.lpplayer.pplayer.lastname + "</td>"));
+	$("#draftPicks tbody").prepend(row);
+
+	row.prepend($("<td><span id='pick_number'> Round " + rowData.draftqueueID.round + " pick "
+			+ rowData.draftqueueID.pick + ":</span><span id='pick_info'>player "
+			+rowData.lpplayer.pplayer.firstname[0]+". "+rowData.lpplayer.pplayer.lastname+" was drafted by "
+			+rowData.draftqueueID.team.name+"</span></td>"));
 }
 /*----------------Draw picks end---------------------------*/
 
@@ -883,6 +2454,7 @@ function leaveDraft(leaguename) {
 
 /* getting principal's name and then load all tables */
 function loadTables(leaguename) {
+	league = leaguename;
 	$.ajax({
 		type : 'post',
 		url : 'http://localhost:8080/FootballManager/username',
@@ -896,6 +2468,7 @@ function loadTables(leaguename) {
 			getQueue(leaguename);
 			getPicks(leaguename);
 			getRosterTeam(leaguename,principalName);
+			
 
 		},
 		error : function(XmlHttpRequest, textStatus, errorThrown) {
@@ -950,6 +2523,7 @@ function checkUpdateState(leaguename) {
 				getQueue(leaguename);
 				removePlayer(leaguename);
 				getLastPick(leaguename);
+				checkstatus(leaguename);
 				size = data;
 			}
 		},
@@ -961,6 +2535,35 @@ function checkUpdateState(leaguename) {
 	});
 }
 
+
+function checkstatus(leaguename){
+	var playerID = document.getElementById('p_id').innerHTML;
+	$.ajax({
+		type : 'post',
+		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
+				+ '/checkstatus',
+		dataType : "text",
+		cache : false,
+		data : {
+			'username' : principalName,
+			'lplayerID' : playerID
+		},
+		success : function(data) {
+			if (data == 1) {
+				$('#draft_button').css('background-image', ' url(http://localhost:8080/FootballManager/resources/images/reshGreen.png)');
+				//document.getElementById("draft_button").style.background = "rgba(0, 255, 0, 0.4)";	
+			} else {
+				$('#draft_button').css('background-image', ' url(http://localhost:8080/FootballManager/resources/images/reshGrey.png)');
+				//document.getElementById("draft_button").style.background = "rgba(255, 0, 0, 0.4)";	
+			}
+		},
+		error : function(XmlHttpRequest, textStatus, errorThrown) {
+
+			// alert("=error= " + XmlHttpRequest.responseText);
+
+		}
+	});
+}
 
 function updateTimer(leaguename) {
 
@@ -975,11 +2578,28 @@ function updateTimer(leaguename) {
 				document.getElementById('drtime').innerHTML = "autopick";
 			} else if (data>99) {
 				var sec = data-100;
-				document.getElementById('drtime').innerHTML = "Draft starting in "+sec +" seconds";
-			} else if (data<10) {
-				document.getElementById('drtime').innerHTML = "0:0"+data;
+				
+				var hours = parseInt( sec / 3600 ) % 24;
+				var minutes = parseInt( sec / 60 ) % 60;
+				var seconds = sec % 60;
+				
+				if (hours < 10) hours = "0"+hours;
+				if (minutes < 10) minutes = "0"+minutes;
+				if (seconds < 10) seconds = "0"+seconds;
+				
+				document.getElementById('drtime').innerHTML = ""+hours +":"+minutes+":"+seconds+"";
+				document.getElementById('drinfo').innerHTML = "Draft starting in";
 			} else {
-				document.getElementById('drtime').innerHTML = "0:"+data;
+				
+				var hours = parseInt( data / 3600 ) % 24;
+				var minutes = parseInt( data / 60 ) % 60;
+				var seconds = data % 60;
+				
+				if (hours < 10) hours = "0"+hours;
+				if (minutes < 10) minutes = "0"+minutes;
+				if (seconds < 10) seconds = "0"+seconds;
+				document.getElementById('drinfo').innerHTML = "On the clock";
+				document.getElementById('drtime').innerHTML = ""+hours +":"+minutes+":"+seconds+"";
 			}
 		}
 	});
@@ -993,7 +2613,7 @@ function removePlayer(leaguename){
 		dataType : "json",
 		cache : false,
 		success : function(data) {
-			console.log("player to delete with id="+data);
+
 				deletePlayer(data);
 
 		},
@@ -1005,11 +2625,12 @@ function removePlayer(leaguename){
 	});
 }
 function deletePlayer(id){
-	console.log("#draft_p_table tr#"+id+"");
-$("tr#"+id+"").remove();
+	
+	$("tr#"+id+"").remove();
+
+	
+
 }
-
-
 
 
 
