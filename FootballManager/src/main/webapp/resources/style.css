@@ -2334,6 +2334,11 @@ height:20px;
 }
 */
 
+#create_player{
+background:white;
+height:70%;
+width:35%;	
+}
 
 #draft_button{
  background:url(images/reshGrey.png) repeat-x;

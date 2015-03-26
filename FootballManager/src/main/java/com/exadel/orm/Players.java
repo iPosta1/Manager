@@ -95,6 +95,9 @@ public class Players implements Serializable {
     @Column(name = "strength")
     private int strength;
     /*--------------*/
+    @Column(name = "stamina")
+    private int stamina;
+    /*--------------*/
 
     // one player - many players in league
     @OneToMany(mappedBy = "pplayer", cascade = CascadeType.ALL)
@@ -287,5 +290,13 @@ public class Players implements Serializable {
 	public void setOvr(int ovr) {
 		this.ovr = ovr;
 	}
+
+    public int getStamina() {
+        return stamina;
+    }
+
+    public void setStamina(int stamina) {
+        this.stamina = stamina;
+    }
 
 }

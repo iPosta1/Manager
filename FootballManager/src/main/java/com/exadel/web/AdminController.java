@@ -1,7 +1,10 @@
 package com.exadel.web;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,15 +12,23 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.HibernateException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.exadel.Offense;
 import com.exadel.orm.Leagues;
+import com.exadel.orm.Players;
 import com.exadel.orm.Users;
 import com.exadel.services.ILeaguesServices;
+import com.exadel.services.IPlayersServices;
 import com.exadel.services.IUsersServices;
 
 /**
@@ -34,10 +45,13 @@ public class AdminController {
 
     @Autowired
     private ILeaguesServices leaguesService;
+    
+    @Autowired
+    private IPlayersServices playersService;
 
     private static final Logger LOG = Logger.getLogger(Offense.class.getName());
 
-    private String searchname = null;
+    private String searchname = "";
 
     
     /* -------------Model Attributes-------------- */
@@ -65,9 +79,9 @@ public class AdminController {
     @ModelAttribute("usersList")
     public List<Users> loadAllUsers() {
         List<Users> users = new ArrayList<Users>();
-
+  
         try {
-            if (searchname.equals("") || searchname.isEmpty())// if search input
+            if (searchname.equals("") || searchname==null)// if search input
                                                               // value empty
                 users = usersService.getAllUsers();
             else {
@@ -206,5 +220,43 @@ public class AdminController {
         }
         return "redirect:/admin/users";
     }
+    
+    /*----------create player-----------*/
+    @InitBinder("player")
+    public void dateBinder(WebDataBinder binder) {
+        // The date format to parse or output your dates
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        // Create a new CustomDateEditor
+        final CustomDateEditor editor = new CustomDateEditor(dateFormat, true);
+        // Register it as custom editor for the Date type
+        binder.registerCustomEditor(Date.class, editor);
+    }
+    
+    @RequestMapping("createplayer")
+    public String playercreate() {
+        return "createplayer";
+    }
+    
+    @ModelAttribute("player")
+    public Players loadEmptyModelBean2() {
+        return new Players();
+    }
+    
+    @RequestMapping(value = "/addplayer", method = RequestMethod.POST)
+    public String addplayer(@ModelAttribute("player") Players player, BindingResult result,
+            RedirectAttributes attributes) {
+
+        try {
+            playersService.savePlayer(player);
+
+        } catch (IndexOutOfBoundsException e2) {
+            LOG.log(Level.SEVERE, "Exception: ", e2);
+        } catch (HibernateException e) {
+            LOG.log(Level.SEVERE, "Exception: ", e);
+        }
+
+        return "createplayer";
+    }
+
 
 }
