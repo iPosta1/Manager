@@ -37,7 +37,8 @@ throw_power int,
 throw_accuracy int,
 kicking_power int,
 kicking_accuracy int,
-strength int
+strength int,
+stamina int
 );
  
 create table leagues (
@@ -68,7 +69,7 @@ leagueID int not null,
 teamID int null,
 playerID int not null,
 constraint fk_leagueID3 foreign key (leagueID) references leagues(leagueID) on delete cascade,
-constraint fk_teamID3 foreign key (teamID) references teams(teamID),
+constraint fk_teamID3 foreign key (teamID) references teams(teamID) on delete cascade,
 constraint fk_playerID3 foreign key (playerID) references players(playerID) on delete cascade,
 UNIQUE KEY (playerID,leagueID)
 );
