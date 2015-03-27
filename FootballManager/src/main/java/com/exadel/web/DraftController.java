@@ -296,10 +296,10 @@ public class DraftController {
         draftqueue = leaguequeue.get(leaguename);
 
         List<Draftqueue> subItems = new ArrayList<Draftqueue>();
-        if (draftqueue.size() < 64) {
+        if (draftqueue.size() < 21) {
             subItems = draftqueue;
         } else {
-            subItems = draftqueue.subList(0, 63);
+            subItems = draftqueue.subList(0, 20);
         }
         return subItems;
     }
@@ -614,6 +614,27 @@ public class DraftController {
         }
  
         return status;
+    }
+    
+    
+    @RequestMapping(value = "{leaguename}/yournextpick", method = RequestMethod.POST)
+    public @ResponseBody
+    Draftqueue getYourNext(@PathVariable("leaguename") String leaguename,  @RequestParam("username") String username) {
+ 
+        List<Draftqueue> draftqueue = new ArrayList<Draftqueue>();
+        draftqueue = leaguequeue.get(leaguename);
+        
+        Draftqueue yourq = new Draftqueue();
+        
+        for (int i=0; i<draftqueue.size();i++){
+            if (draftqueue.get(i).getDraftqueueID().getTeam().getUuser().getUsername().equals(username)){
+                yourq = draftqueue.get(i);
+                break;
+            }
+        }
+          
+ 
+        return yourq;
     }
 
 }

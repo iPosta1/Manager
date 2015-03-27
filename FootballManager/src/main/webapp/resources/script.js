@@ -1851,30 +1851,51 @@ function drawTableQueue(data,leaguename) {
 
 	for (var i = data.length-1; i > -1 ; i--) {
 
-		
-		if (data[i].draftqueueID.team.uuser.username == principalName) {
-			
-				var image;
-				image = "<img id='drafticon' src='data:image/png;base64,"+data[i].draftqueueID.team.teamlogo+" '/>";
-				
-				$("#yourNext tr").remove();
-				var username = data[i].draftqueueID.team.uuser.username;
-				var row1 = $("<tr><td><div id='yourNextTitle'>Your Team</div><div id='npblock'>"+image+"<div id='nexttdata'>" + data[i].draftqueueID.team.name
-						+ "</div></div></td></tr>").click(function() {
-							document.getElementById('rosterName').innerHTML = document.getElementById('npblock').innerHTML;
-							getRosterTeam(leaguename,username);});;
-				$("#yourNext").append(row1);
-				
-				var row2 = $("<tr><td><div id='yourNextTitle'>Next pick: Round "+data[i].draftqueueID.round+" Pick "+data[i].draftqueueID.pick+"</div><td></tr>");
-				$("#yourNext").append(row2);
-			
-
-		}
-	
-		if (i < 25) drawRowQueue(data[i], i,leaguename);
+		drawRowQueue(data[i], i,leaguename);
 		
 	}
+	getYourNextPick(leaguename);
 }
+
+//get users next pick
+function getYourNextPick(leaguename){
+	$.ajax({
+		type : 'post',
+		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
+				+ '/yournextpick',
+		dataType : "json",
+		cache : false,
+		data : {
+			'username' : principalName
+		},
+		success : function(data) {
+			
+			if (data !=null) {
+			
+			var image;
+			image = "<img id='drafticon' src='data:image/png;base64,"+data.draftqueueID.team.teamlogo+" '/>";
+			
+			$("#yourNext tr").remove();
+			var username = data.draftqueueID.team.uuser.username;
+			var row1 = $("<tr><td><div id='yourNextTitle'>Your Team</div><div id='npblock'>"+image+"<div id='nexttdata'>" + data.draftqueueID.team.name
+					+ "</div></div></td></tr>").click(function() {
+						document.getElementById('rosterName').innerHTML = document.getElementById('npblock').innerHTML;
+						getRosterTeam(leaguename,username);});;
+			$("#yourNext").append(row1);
+			
+			var row2 = $("<tr><td><div id='yourNextTitle'>Next pick: Round "+data.draftqueueID.round+" Pick "+data.draftqueueID.pick+"</div><td></tr>");
+			$("#yourNext").append(row2);
+			
+			}
+		},
+		error : function(XmlHttpRequest, textStatus, errorThrown) {
+
+			// alert("standings error= " + XmlHttpRequest.responseText);
+
+		}
+	});
+}
+
 var round=0;
 function drawRowQueue(rowData, num,league) {
 	//console.log("<tr onclick='getRosterTeam("+league+","+rowData.draftqueueID.team.uuser.username+")' />");
@@ -2538,6 +2559,7 @@ function checkUpdateState(leaguename) {
 
 function checkstatus(leaguename){
 	var playerID = document.getElementById('p_id').innerHTML;
+	if (playerID != null) {
 	$.ajax({
 		type : 'post',
 		url : 'http://localhost:8080/FootballManager/draft/' + leaguename
@@ -2563,6 +2585,7 @@ function checkstatus(leaguename){
 
 		}
 	});
+	}
 }
 
 function updateTimer(leaguename) {
