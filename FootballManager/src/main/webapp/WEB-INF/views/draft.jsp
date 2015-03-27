@@ -69,9 +69,11 @@
 	</div>
 <!-- -------------- -->
  <div id="testblock">
+    <div id="to_top">
        <table cellspacing="0" cellpadding="0" width="100%" height="100%" id="draftTeams" >
             <tr><td></td></tr>
         </table>
+        </div>
         </div> 
         
         

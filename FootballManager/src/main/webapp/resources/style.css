@@ -1716,6 +1716,13 @@ width:100%;
 padding-top:5px;
 cursor:pointer;
 }
+
+#to_top{
+width:100%;
+height:100;
+top:0;	
+}
+
 #round_header{
  background:url(images/leftPanHead.png) repeat-x;	
  height:20px;
@@ -1858,6 +1865,7 @@ border-radius:5px;
  height:40px;
 padding-top:0;
 border: grey 1px solid;
+
 }
 #teamround{
 background:url(images/team_round.png) repeat-x; 
