@@ -130,6 +130,7 @@ constraint fk_steamID foreign key (teamID) references teams(teamID) on delete ca
 teamID int not null,
 round int not null,
 pick int not null,
+is_online int,
 constraint fk_teamIDd foreign key (teamID) references standings(teamID) on delete cascade
 );
 
