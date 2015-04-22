@@ -1,11 +1,11 @@
 -- create database script
  
-drop database if exists FootballManager;
+drop database if exists footballmanager;
  
 -- create database  FootballManager
-create database FootballManager; 
+create database footballmanager; 
  
-use FootballManager;                  
+use footballmanager;                  
 create table users (
 userID int not null primary key AUTO_INCREMENT,
 username varchar(20) not null unique,
