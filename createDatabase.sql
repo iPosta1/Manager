@@ -142,6 +142,39 @@ lplayerID int,
 constraint fk_teamIDp foreign key (teamID) references standings(teamID) on delete cascade,
 constraint fk_lplayerIDf foreign key (lplayerID) references lplayers(lplayerID) on delete cascade
 );
+
+ create table formations(
+formation_id int primary key AUTO_INCREMENT,
+form_type varchar(1) not null,
+form_name varchar(20) not null
+);
+
+create table form_positions(
+form_positions_id int primary key AUTO_INCREMENT,
+formation_id int not null,
+pos_name varchar(5),
+number int not null,
+constraint fk_form_id foreign key (formation_id) references formations(formation_id) on delete cascade
+);
+
+ create table combinations(
+comb_id int primary key AUTO_INCREMENT,
+comb_name varchar(20) not null
+);
+
+create table routes(
+route_id int primary key AUTO_INCREMENT,
+comb_id int not null,
+form_positions_id int not null,
+constraint fk_comb_id foreign key (comb_id) references combinations(comb_id) on delete cascade,
+constraint fk_form_positions_id foreign key (form_positions_id) references form_positions(form_positions_id) on delete cascade
+);
+
+create table route_cells(
+route_id int not null,
+cell int not null,
+constraint route_id foreign key (route_id) references routes(route_id) on delete cascade
+);
  
   insert into users (userID,username,password,email,user_group) values (1,'primetimerivalry1','27092709','nkvtbsk1@gmail.com','bot');
   insert into users (userID,username,password,email,user_group) values (2,'primetimerivalry2','27092709','nkvtbsk2@gmail.com','bot');
