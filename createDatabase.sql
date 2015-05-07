@@ -215,26 +215,6 @@ constraint route_id foreign key (route_id) references routes(route_id) on delete
   insert into users (userID,username,password,email,user_group) values (35,'petya','1','nkwerbsk@gmail.com','ROLE_USER');
   insert into users (userID,username,password,email,user_group) values (36,'valera','1','werwefk@gmail.com','ROLE_USER');
  
-
-
-
-
-  DELIMITER $$
-CREATE TRIGGER create_games before INSERT ON footballmanager.games
-    FOR EACH ROW 
-begin
-DECLARE cnt INT;
- 
-    IF (NEW.remaining_time = 0) THEN
-        SET NEW.remaining_time = 3600;
-  END IF;
-    SELECT count(*) into cnt from games where (games.team1ID = new.team1ID and games.weekID = new.weekID) or (games.team2ID = new.team1ID and games.weekID = new.weekID) or (games.team1ID = new.team2ID and games.weekID = new.weekID) ;
-       if (cnt) > 0 then
-  SIGNAL sqlstate '45001' set message_text = "game exists";
-  END IF;
-end$$
- 
-
  
  
 commit;
