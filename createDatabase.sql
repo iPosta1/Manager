@@ -181,6 +181,14 @@ route_id int not null,
 cell int not null,
 constraint route_id foreign key (route_id) references routes(route_id) on delete cascade
 );
+
+create table players_position(
+players_position_id int primary key AUTO_INCREMENT,
+form_positions_id int not null,
+lplayerID int,
+constraint form_positions_id2 foreign key (form_positions_id) references form_positions(form_positions_id) on delete cascade,
+constraint lplayerID11 foreign key (lplayerID) references lplayers(lplayerID) on delete cascade
+);
  
   insert into users (userID,username,password,email,user_group) values (1,'primetimerivalry1','27092709','nkvtbsk1@gmail.com','bot');
   insert into users (userID,username,password,email,user_group) values (2,'primetimerivalry2','27092709','nkvtbsk2@gmail.com','bot');
