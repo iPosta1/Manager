@@ -178,6 +178,7 @@ constraint fk_form_positions_id foreign key (form_positions_id) references form_
 );
 
 create table route_cells(
+cell_id int primary key AUTO_INCREMENT,
 route_id int not null,
 cell int not null,
 constraint route_id foreign key (route_id) references routes(route_id) on delete cascade
