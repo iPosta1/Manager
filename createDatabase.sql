@@ -161,7 +161,8 @@ constraint fk_form_id foreign key (formation_id) references formations(formation
 
  create table combinations(
 comb_id int primary key AUTO_INCREMENT,
-comb_name varchar(20) not null
+comb_name varchar(20) not null,
+comb_img varchar(20)
 );
 
 create table routes(
