@@ -155,7 +155,7 @@ create table form_positions(
 form_positions_id int primary key AUTO_INCREMENT,
 formation_id int not null,
 pos_name varchar(5),
-number int not null,
+number_cell int not null,
 constraint fk_form_id foreign key (formation_id) references formations(formation_id) on delete cascade
 );
 
@@ -168,6 +168,10 @@ create table routes(
 route_id int primary key AUTO_INCREMENT,
 comb_id int not null,
 form_positions_id int not null,
+route_type varchar(10) not null,
+min_yards int,
+route_complexity int,
+route_img varchar(50),
 constraint fk_comb_id foreign key (comb_id) references combinations(comb_id) on delete cascade,
 constraint fk_form_positions_id foreign key (form_positions_id) references form_positions(form_positions_id) on delete cascade
 );
