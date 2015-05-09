@@ -189,7 +189,8 @@ players_position_id int primary key AUTO_INCREMENT,
 form_positions_id int not null,
 lplayerID int,
 constraint form_positions_id2 foreign key (form_positions_id) references form_positions(form_positions_id) on delete cascade,
-constraint lplayerID11 foreign key (lplayerID) references lplayers(lplayerID) on delete cascade
+constraint lplayerID11 foreign key (lplayerID) references lplayers(lplayerID) on delete cascade,
+unique(form_positions_id,lplayerID)
 );
  
   insert into users (userID,username,password,email,user_group) values (1,'primetimerivalry1','27092709','nkvtbsk1@gmail.com','bot');
