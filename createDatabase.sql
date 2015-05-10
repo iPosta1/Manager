@@ -148,7 +148,8 @@ constraint fk_lplayerIDf foreign key (lplayerID) references lplayers(lplayerID) 
  create table formations(
 formation_id int primary key AUTO_INCREMENT,
 form_type varchar(1) not null,
-form_name varchar(20) not null
+form_name varchar(20) not null,
+form_img varchar(20)
 );
 
 create table form_positions(
