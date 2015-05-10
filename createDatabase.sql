@@ -161,8 +161,10 @@ constraint fk_form_id foreign key (formation_id) references formations(formation
 
  create table combinations(
 comb_id int primary key AUTO_INCREMENT,
+formation_id int not null,
 comb_name varchar(20) not null,
-comb_img varchar(20)
+comb_img varchar(20),
+constraint fk_formation_id0 foreign key (formation_id) references formations(formation_id) on delete cascade
 );
 
 create table routes(
