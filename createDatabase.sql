@@ -117,8 +117,8 @@ unique(team1ID,weekID)
 create table events (
 event_id int not null primary key AUTO_INCREMENT,
 event varchar(100),
-game_id int not null,
-constraint fk_gameIDe foreign key (game_id) references games(game_id) on delete cascade
+gameID int not null,
+constraint fk_gameIDe foreign key (gameID) references games(gameID) on delete cascade
 );
  
 create table standings (
