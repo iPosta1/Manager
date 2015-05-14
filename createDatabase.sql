@@ -113,6 +113,13 @@ constraint fk_team1ID foreign key (team1ID) references teams(teamID) on delete c
 constraint fk_team2ID foreign key (team2ID) references teams(teamID) on delete cascade,
 unique(team1ID,weekID)
 );  
+
+create table events (
+event_id int not null primary key AUTO_INCREMENT,
+event varchar(100),
+game_id not null,
+constraint fk_gameIDe foreign key (game_id) references games(game_id) on delete cascade
+);
  
 create table standings (
 team_number int,
