@@ -242,7 +242,7 @@ unique(form_positions_id,lplayerID)
  
   insert into users (userID,username,password,email,user_group) values (0,'primetimerivalry.com','1','primetimerivalry@gmail.com','bot');
   
-  insert into leagues(leagueID,league_name,primetime,maxplayers,stat_date,is_started) values(0,'general','00:00:00',32,'2000-01-01','n');
+  insert into leagues(leagueID,league_name,primetime,maxplayers,start_date,is_started) values(0,'general','00:00:00',32,'2000-01-01','n');
   
  
 commit;
