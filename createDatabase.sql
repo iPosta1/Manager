@@ -99,7 +99,7 @@ create table games (
 gameID int not null primary key AUTO_INCREMENT,
 team1ID int not null,
 team2ID int not null,
-weekID int not null,
+weekID int,
 team1_points int,
 team2_points int,
 attack_team int CHECK (attack_team = team1ID OR arrack_team = team2ID),
@@ -240,6 +240,9 @@ unique(form_positions_id,lplayerID)
   insert into users (userID,username,password,email,user_group) values (35,'petya','1','nkwerbsk@gmail.com','ROLE_USER');
   insert into users (userID,username,password,email,user_group) values (36,'valera','1','werwefk@gmail.com','ROLE_USER');
  
- 
+  insert into users (userID,username,password,email,user_group) values (0,'primetimerivalry.com','1','primetimerivalry@gmail.com','bot');
+  
+  insert into leagues(leagueID,league_name,primetime,maxplayers,stat_date,is_started) values(0,'general','00:00:00',32,'2000-01-01','n');
+  
  
 commit;
