@@ -118,6 +118,7 @@ create table events (
 event_id int not null primary key AUTO_INCREMENT,
 event varchar(100),
 gameID int not null,
+event_type varchar(1),
 constraint fk_gameIDe foreign key (gameID) references games(gameID) on delete cascade
 );
  
