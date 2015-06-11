@@ -240,7 +240,8 @@ unique(form_positions_id,lplayerID)
   insert into users (userID,username,password,email,user_group) values (34,'vasya','1','nkvtwerewrbsk@gmail.com','ROLE_USER');
   insert into users (userID,username,password,email,user_group) values (35,'petya','1','nkwerbsk@gmail.com','ROLE_USER');
   insert into users (userID,username,password,email,user_group) values (36,'valera','1','werwefk@gmail.com','ROLE_USER');
- 
+   insert into users (username,password,email,user_group) values ('admin','27092709','asdasdasdasd.com','ROLE_ADMIN');
+   
   insert into users (userID,username,password,email,user_group) values (0,'primetimerivalry.com','1','primetimerivalry@gmail.com','bot');
   
   insert into leagues(leagueID,league_name,primetime,maxplayers,start_date,is_started) values(0,'general','00:00:00',32,'2000-01-01','n');
