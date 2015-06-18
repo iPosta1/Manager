@@ -246,5 +246,19 @@ unique(form_positions_id,lplayerID)
   
   insert into leagues(leagueID,league_name,primetime,maxplayers,start_date,is_started) values(0,'general','00:00:00',32,'2000-01-01','n');
   
+    DELIMITER $$
+CREATE TRIGGER create_games before INSERT ON footballmanager.games
+    FOR EACH ROW 
+begin
+DECLARE cnt INT;
+ 
+    IF (NEW.remaining_time = 0) THEN
+        SET NEW.remaining_time = 3600;
+  END IF;
+    SELECT count(*) into cnt from games where (games.team1ID = new.team1ID and games.weekID = new.weekID) or (games.team2ID = new.team1ID and games.weekID = new.weekID) or (games.team1ID = new.team2ID and games.weekID = new.weekID) ;
+       if (cnt) > 0 then
+  SIGNAL sqlstate '45001' set message_text = "game exists";
+  END IF;
+end$$
  
 commit;
